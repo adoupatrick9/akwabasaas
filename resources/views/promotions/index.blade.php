@@ -10,7 +10,7 @@
         @endif
     </div>
 
-    <a data-toggle="modal" href="{{ url('/promotions#myModalStore') }}" >
+    <a data-toggle="modal" href="{{ url('/promotions#myModalStorePromo') }}" >
         <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter une promotion  <i class="fa fa-plus"></i></div>
     </a>
 
@@ -51,9 +51,9 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/promotions-edit/'.$promotion['IDas_promotion'].'/promotions') }}">Modifier</a></li>
+                                    <li><a href="#" id="{{ $promotion['IDas_promotion'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/promotions-actif-inactif/'.$promotion['IDas_promotion'] ) }}">Activer/Désactiver</a></li>
-                                    <li><a href="{{ url('/promotions-delete/'.$promotion['IDas_promotion'] ) }}">Supprimer</a></li>
+                                    <li><a href="#" id="{{ $promotion['IDas_promotion'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -67,6 +67,11 @@
       </div>
 
     @include('promotions.create')
+    @include('promotions.edit')
 
   </section>
+@endsection
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('js/promotion.js') }}"></script>
 @endsection

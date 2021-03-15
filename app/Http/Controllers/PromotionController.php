@@ -35,58 +35,29 @@ class PromotionController extends Controller
     }
 
     public function store(Request $request){
-
         $this->Validation($request);
         $data = $this->Affectation(1, $request); // affectation enregistrement
         $msg = $this->EnregistrementModificationOuSuppression(1,$data,$request);
-
-        if ($msg != "") {
-            return redirect('/promotions')->with("message", $msg);
-        }
-
+        return $data;
     }
 
     public function edit($ID, Request $request){
         $userAuth = new AuthentificationController();
-        //akwabasaas/utilisateur
-        $user = $userAuth->RecuperationInfosUserConnecte($request);
-        $login = $user['ap_login_pers'];
-        $pwd = $user['ap_pwd_pers'];
-        $urlS = env('APP_URL_SAAS')."service?login=$login&pwd=$pwd";
-        $urlD = env('APP_URL_SAAS')."devise?login=$login&pwd=$pwd";
-
         $data = $this->RechercherPromotion($ID,$request);
-
-        $serviceHTTP = Http::get($urlS);
-        $services = $serviceHTTP->json();
-
-        $deviseHTTP = Http::get($urlD);
-        $devises = $deviseHTTP->json();
-
-        return view('promotions.edit', compact('data', 'services', 'devises'));
+        return $data;
     }
 
     public function update(Request $request, $ID){
-
         $this->Validation($request);
         $data = $this->Affectation(2, $request); // affectation modif
         $msg = $this->EnregistrementModificationOuSuppression(2,$data,$request);
-
-        if ($msg != "") {
-            return redirect('/promotions')->with("message", $msg);
-        }
-
+        return $data;
     }
 
     public function delete(Request $request, $ID){
-
         $data = $this->RechercherPromotion($ID,$request);
         $msg = $this->EnregistrementModificationOuSuppression(3,$data,$request);
-
-        if ($msg != "") {
-            return redirect('/promotions')->with("message", $msg);
-        }
-
+        return $data;
     }
 
     private function Validation(Request $request){

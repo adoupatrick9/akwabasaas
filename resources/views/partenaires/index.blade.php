@@ -5,13 +5,7 @@
     <h3><i class="fa fa-angle-right"></i> Partenaires</h3>
     <hr>
 
-    <div class="container">
-        @if(session()->has('message'))
-            <h4 class="alert alert-info text-center">{{ session()->get('message') }}</h4>
-        @endif
-    </div>
-
-    <a data-toggle="modal" href="{{ url('/partenaires#myModalStore') }}">
+    <a data-toggle="modal" href="#myModalStorePartenaire">
         <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un partenaire  <i class="fa fa-plus"></i></div>
     </a>
 
@@ -53,9 +47,9 @@
                                     <li><a href="{{ url('/factures/'.$partenaire['ap_matricule_pers'].'/partenaire' ) }}">Factures</a></li>
                                     <li><a href="{{ url('/utilisateurs-portefeuille/'.$partenaire['IDas_personne']).'/partenaire'  }}">Portefeuille</a></li>
                                     <li><a href="{{ url('/utilisateurs-representant/'.$partenaire['IDas_personne']).'/partenaire'  }}">Représentants</a></li>
-                                    <li><a href="{{ url('/utilisateurs-edit/'.$partenaire['IDas_personne']).'/partenaire' }}">Modifier</a></li>
+                                    <li><a href="#" id="{{ $partenaire['IDas_personne'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/utilisateurs-actif-inactif/'.$partenaire['IDas_personne']).'/partenaire'  }}">Activer/Désactiver</a></li>
-                                    <li><a href="{{ url('/utilisateurs-delete/'.$partenaire['IDas_personne']).'/partenaire'  }}">Supprimer</a></li>
+                                    <li><a href="#" id="{{ $partenaire['IDas_personne'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -69,6 +63,11 @@
       </div>
 
       @include('partenaires.create')
+      @include('partenaires.edit')
 
 </section>
+@endsection
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('js/partenaire.js') }}"></script>
 @endsection

@@ -1,9 +1,10 @@
-<form action="{{ url('/promotions-create') }}" method="post">
-    @csrf
+
     <!-- Modal -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalStore" class="modal fade">
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalStorePromo" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="addPromo" method="post">
+             @csrf
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 class="modal-title">Ajouter une promotion</h4>
@@ -48,17 +49,12 @@
                     Coût annuel <em class="text-danger">*</em><input type="number" name="pro_cout_annuel" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('pro_cout_annuel') }}">
                 </div>
             </div>
-            <div class="container text-danger">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </div>
             <div class="modal-footer">
               <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>
               <button class="btn btn-theme" type="submit">Enregistrer <i class="fa fa-save"></i></button>
             </div>
+            </form>
           </div>
         </div>
       </div>
       <!-- modal -->
-</form>

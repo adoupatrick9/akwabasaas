@@ -24,50 +24,29 @@ class UtilisateurController extends Controller
     }
 
     public function store(Request $request, $element){
-
         $this->Validation($request);
         $data = $this->Affectation(1, $request, $element); // affectation enregistrement
-        //dd($data);
         $msg = $this->EnregistrementModificationOuSuppression(1,$data,$request, $element);
-
-        //dd($data);
-        if ($msg != "") {
-            $vue = "/utilisateurs/".$element;
-            return redirect($vue)->with("message", $msg);
-        }
-
+        return$data;
     }
 
     public function edit($ID, Request $request, $element){
         $pays = $this->ListePays($request);
         $data = $this->RechercherUtilisateur($ID,$request, $element);
-        $vue = $element."s.edit";
-        return view($vue, compact('data', 'pays'));
+        return$data;
     }
 
     public function update(Request $request, $ID, $element){
-
         $this->Validation($request);
         $data = $this->Affectation(2, $request, $element); // affectation modif
         $msg = $this->EnregistrementModificationOuSuppression(2,$data,$request, $element);
-
-        if ($msg != "") {
-            $vue = "/utilisateurs/".$element;
-            return redirect($vue)->with("message", $msg);
-        }
-
+        return$data;
     }
 
     public function delete(Request $request, $ID,$element){
-
         $data = $this->RechercherUtilisateur($ID,$request, $element);
         $msg = $this->EnregistrementModificationOuSuppression(3,$data,$request, $element);
-
-        if ($msg != "") {
-            $vue = "/utilisateurs/".$element;
-            return redirect($vue)->with("message", $msg);
-        }
-
+        return$data;
     }
 
     private function Validation(Request $request){
@@ -79,7 +58,6 @@ class UtilisateurController extends Controller
             'ap_login_pers' => 'required',
             'ap_ville_pers' => 'required',
             'ap_pays_pers' => 'required',
-            'ap_genre_pers' => 'required',
         ]);
     }
 

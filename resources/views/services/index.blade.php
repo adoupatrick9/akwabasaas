@@ -10,7 +10,7 @@
         @endif
     </div>
 
-    <a data-toggle="modal" href="{{ url('/services#myModalStore') }}">
+    <a data-toggle="modal" href="#myModalStoreService">
         <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un service  <i class="fa fa-plus"></i></div>
     </a>
 
@@ -54,9 +54,9 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/services-edit/'.$service['IDas_service']).'/services' }}">Modifier</a></li>
+                                    <li><a href="#" id="{{ $service['IDas_service'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/services-actif-inactif/'.$service['IDas_service']) }}">Activer/Désactiver</a></li>
-                                    <li><a href="{{ url('/services-delete/'.$service['IDas_service'] ) }}">Supprimer</a></li>
+                                    <li><a href="#" id="{{ $service['IDas_service'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -70,5 +70,10 @@
       </div>
 
     @include('services.create')
+    @include('services.edit')
   </section>
+@endsection
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('js/service.js') }}"></script>
 @endsection

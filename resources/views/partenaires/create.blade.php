@@ -1,37 +1,39 @@
-<form action="{{ url('/utilisateurs-create/partenaire') }}" method="post" id="NewUser">
-    @csrf
     <!-- Modal -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalStore" class="modal fade">
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalStorePartenaire" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="addPartenaire">
+            @csrf
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 class="modal-title">Ajouter un partenaire</h4>
             </div>
             <div class="modal-body row">
-                <div class="col-md-4 form-group">
+                <div class="container col-md-12">
+                    <div class="col-md-12 form-group">
                     Nom <span class="text-danger">*</span><input type="text" name="ap_nom_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_nom_pers') }}">
                 </div>
-                <div class="col-md-5 form-group">
-                    Prénoms <input type="text" name="ap_prenom_pers"  autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_prenom_pers') }}">
+                    <div class="col-md-12 form-group genreN">
+                    Prénom <span class="text-danger">*</span><input type="text" name="ap_prenom_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_prenom_pers') }}">
                 </div>
-                <div class="col-md-3 form-group">
-                    Login <input type="text" name="ap_login_pers"  autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_login_pers') }}">
+                <div class="col-md-12 form-group">
+                    Login <span class="text-danger">*</span><input type="text" name="ap_login_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_login_pers') }}">
+                </div>
                 </div>
                 <div class="tabs">
                     <ul class="tabs__items">
-                        <li class="tabs__item tabs_active">Informations personnelles</li>
-                        <li class="tabs__item" data-hash="#ill">Coordonnées</li>
+                        <li class="tabs__item tabs_active" style="font-weight: bold;">Informations personnelles</li>
+                        <li class="tabs__item" style="font-weight: bold;" data-hash="#ill">Coordonnées</li>
                     </ul>
                     <div class="tabs__content-wrapper">
                         <div class="tabs__content tabs_active">
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-3 form-group">
                                 Type personne<span class="text-danger">*</span><select name="ap_type_pers" id="ap_type_pers" class="form-control">
                                     <option value="1">Physique</option>
                                     <option value="2">Morale</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-3 form-group genreN">
                                 Genre <span class="text-danger">*</span><select name="ap_genre_pers" id="ap_genre_pers" class="form-control">
                                     <option value="Homme">Homme</option>
                                     <option value="Femme">Femme</option>
@@ -44,14 +46,7 @@
                                 Lieu de naissance<input type="text" name="ap_lieunai_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_lieunai_pers') }}">
                             </div>
                             <div class="col-md-6 form-group">
-                                Type pièce <select name="ap_typepiece_pers" id="ap_typepiece_pers" class="form-control">
-                                    <option value="Carte nationale d'identité" id="fre">Carte nationale d'identité</option>
-                                    <option value="Passeport" id="fre">Passeport</option>
-                                    <option value="Permis de conduire" id="fre">Permis de conduire</option>
-                                    <option value="Carte de résident" id="fre">Carte de résident</option>
-                                    <option value="Carte de séjour" id="fre">Carte de séjour</option>
-                                    <option value="registre de commerce des sociétés" id="rcs">registre de commerce des sociétés</option>
-                                </select>
+                                Type de pièce<input type="text" name="ap_typepiece_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_typepiece_pers') }}">
                             </div>
                             <div class="col-md-6 form-group">
                                 Numéro pièce <input type="text" name="ap_numeropiece_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_numeropiece_pers') }}">
@@ -78,31 +73,27 @@
                                 Ville <span class="text-danger">*</span><input type="text" name="ap_ville_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_ville_pers') }}">
                             </div>
                             <div class="col-md-6 form-group">
+                                Site web<input type="text" name="ap_siteweb_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_siteweb_pers') }}">
+                            </div>
+                            <div class="col-md-6 form-group">
                                 Adresse postale<input type="text" name="ap_adressepostale_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_adressepostale_pers') }}">
                             </div>
                             <div class="col-md-6 form-group">
                                 Adresse géographique<input type="text" name="ap_adressegeo_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_adressegeo_pers') }}">
                             </div>
-                            <div class="col-md-6 form-group">
-                                Site web<input type="text" name="ap_siteweb_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_siteweb_pers') }}">
-                            </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer col-md-12">
                                 <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>
                                 <button class="btn btn-theme" type="submit" id="submit">Enregistrer <i class="fa fa-save"></i></button>
-                              </div>
+                            </div>
+                            </form>
                         </div>
                         <div class="tabs__content">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container text-danger">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </div>
           </div>
         </div>
       </div>
       <!-- modal -->
-</form>
+

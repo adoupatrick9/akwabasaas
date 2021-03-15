@@ -10,7 +10,7 @@
         @endif
     </div>
 
-    <a data-toggle="modal" href="{{ url('/utilisateurs#myModalStore') }}">
+    <a data-toggle="modal" href="#myModalStoreUtilisateur">
         <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un utilisateur  <i class="fa fa-plus"></i></div>
     </a>
 
@@ -49,9 +49,9 @@
                                         <span class="caret"></span>
                                         </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('/utilisateurs-edit/'.$user['IDas_personne']).'/utilisateur' }}">Modifier</a></li>
+                                        <li><a href="#" id="{{ $user['IDas_personne'] }}" class="editer">Modifier</a></li>
                                         <li><a href="{{ url('/utilisateurs-actif-inactif/'.$user['IDas_personne'].'/utilisateur' ) }}">Activer/Désactiver</a></li>
-                                        <li><a href="{{ url('/utilisateurs-delete/'.$user['IDas_personne'].'/utilisateur' ) }}">Supprimer</a></li>
+                                        <li><a href="#" id="{{ $user['IDas_personne'] }}" class="supprimer">Supprimer</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -65,6 +65,11 @@
       </div>
 
     @include('utilisateurs.create')
+    @include('utilisateurs.edit')
 
   </section>
+@endsection
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('js/utilisateur.js') }}"></script>
 @endsection

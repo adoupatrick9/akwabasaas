@@ -10,7 +10,7 @@
       @endif
     </div>
 
-    <a data-toggle="modal" href="{{ url('/clients#myModalStore') }}">
+    <a data-toggle="modal" href="#myModalStoreClient">
         <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un client  <i class="fa fa-plus"></i></div>
     </a>
     <div class="row mb" style="margin: 0px 1px;">
@@ -49,9 +49,9 @@
                                     <li><a href="{{ url('/factures/'.$client['ap_matricule_pers'].'/client' ) }}">Factures</a></li>
                                     <li><a href="{{ url('/utilisateurs-service/'.$client['IDas_personne']).'/client'  }}">Services souscrits</a></li>
                                     <li><a href="{{ url('/utilisateurs-representant/'.$client['IDas_personne']).'/client'  }}">Représentants</a></li>
-                                    <li><a href="{{ url('/utilisateurs-edit/'.$client['IDas_personne']).'/client' }}">Modifier</a></li>
+                                    <li><a href="#" id="{{ $client['IDas_personne'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/utilisateurs-actif-inactif/'.$client['IDas_personne']).'/client'  }}">Activer/Désactiver</a></li>
-                                    <li><a href="{{ url('/utilisateurs-delete/'.$client['IDas_personne']).'/client'  }}">Supprimer</a></li>
+                                    <li><a href="#" id="{{ $client['IDas_personne'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                     </td>
@@ -66,6 +66,11 @@
       </div>
 
       @include('clients.create')
+      @include('clients.edit')
   </section>
+@endsection
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('js/client.js') }}"></script>
 @endsection
 

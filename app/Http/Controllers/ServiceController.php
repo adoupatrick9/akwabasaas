@@ -30,36 +30,25 @@ class ServiceController extends Controller
         $this->Validation($request);
         $data = $this->Affectation(1, $request); // affectation enregistrement
         $msg = $this->EnregistrementModificationOuSuppression(1,$data,$request);
-
-        if ($msg != "") {
-            return redirect('/services')->with("message", $msg);
-        }
+        return $data;
     }
 
     public function edit($ID, Request $request){
         $service = $this->RechercherService($ID,$request);
-        return view('services.edit', compact('service'));
+        return $service;
     }
 
     public function update(Request $request, $ID){
-
         $this->Validation($request);
         $data = $this->Affectation(2, $request); // affectation modif
         $msg = $this->EnregistrementModificationOuSuppression(2,$data,$request);
-
-        if ($msg != "") {
-            return redirect('/services')->with("message", $msg);
-        }
-
+        return $data;
     }
 
     public function delete(Request $request, $ID){
         $data = $this->RechercherService($ID,$request);
         $msg = $this->EnregistrementModificationOuSuppression(3,$data,$request);
-
-        if ($msg != "") {
-            return redirect('/services')->with("message", $msg);
-        }
+        return $data;
     }
 
     private function Validation(Request $request){

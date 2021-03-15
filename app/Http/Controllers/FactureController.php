@@ -33,44 +33,34 @@ class FactureController extends Controller
         return $factures;
     }
 
-    public function store(Request $request){
-
+    public function store(Request $request, $matricule, $element){
         $this->Validation($request);
         $data = $this->Affectation(1, $request); // affectation enregistrement
         $msg = $this->EnregistrementModificationOuSuppression(1,$data,$request);
-
-        return redirect('/factures')->with("message", $msg);
-
+        return $data;
     }
 
     public function edit($ID, Request $request){
         $data = $this->RechercherDevise($ID,$request);
-        return view('factures.edit', compact('data'));
+        return $data;
     }
 
     public function update(Request $request, $ID){
-
         $this->Validation($request);
         $data = $this->Affectation(2, $request); // affectation modif
         $msg = $this->EnregistrementModificationOuSuppression(2,$data,$request);
-
-        return redirect('/factures')->with("message", $msg);
-
+        return $data;
     }
 
     public function delete(Request $request, $ID){
-
         $data = $this->RechercherDevise($ID,$request);
         $msg = $this->EnregistrementModificationOuSuppression(3,$data,$request);
-
-        return redirect('/factures')->with("message", $msg);
-
+        return $data;
     }
 
     private function Validation(Request $request){
         $request->validate([
             "Fac_montant" => "required",
-            "Fac_montant_paye" => "required" ,
             "Fac_date_facturation" => "required" ,
             "Fac_date_echeance" => "required" ,
             "Fac_debut_periode" => "required" ,
@@ -78,7 +68,7 @@ class FactureController extends Controller
         ]);
     }
 
-    private function Affectation(int $action, Request $request){
+    private function Affectation(int $action, Request $request, $matricule){
 
         $data = array();
         $IDas_facture = 0;
@@ -90,21 +80,18 @@ class FactureController extends Controller
         $data = [
             "IDas_facture" => $IDas_facture,
             "Numero_facture" => $data['Numero_facture'],
-            "Fac_montant" => Request(''),
-            "Fac_montant_paye" => Request(''),
-            "Fac_date_facturation" => Request(''),
-            "Fac_date_echeance" => Request(''),
-            "Fac_debut_periode" => Request(''),
-            "Fac_fin_periode" => Request(''),
+            "Fac_montant" => Request('Fac_montant'),
+            "Fac_montant_paye" => Request('Fac_montant_paye'),
+            "Fac_date_facturation" => Request('Fac_date_facturation'),
+            "Fac_date_echeance" => Request('Fac_date_echeance'),
+            "Fac_debut_periode" => Request('Fac_debut_periode'),
+            "Fac_fin_periode" => Request('Fac_fin_periode'),
             "Ajoute_le" => $data['Ajoute_le'],
             "Modifie_le" => $data['Modifie_le'],
             "Ajoute_par" => $data['Ajoute_par'],
             "Modifie_par" => $data['Modifie_par'],
             "Date_heure_sys" => $data['Date_heure_sys'],
-            /* "Code_partenaire" => ,
-            "Code_licence" => ,
-            "Cli_reference" => ,
-            "Sc_numero_serviceclient" => , */
+            "Ap_matricule_pers" => $matricule,
         ];
 
         return $data;

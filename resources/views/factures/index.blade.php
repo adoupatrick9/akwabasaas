@@ -4,11 +4,6 @@
 <section class="wrapper mt">
     <h3><i class="fa fa-angle-right"></i> Factures</h3>
     <hr>
-    <div class="container">
-      @if(session()->has('message'))
-          <h4 class="alert alert-info text-center">{{ session()->get('message') }}</h4>
-      @endif
-    </div>
 
     <div class="row mb" style="margin: 0px 1px;">
         <!-- page start-->
@@ -27,16 +22,16 @@
                   </thead>
                   <tbody>
                     @foreach($factures as $facture)
-                      <tr class="gradeC">
-                        <td style="vertical-align: middle;"></td>
-                        <td style="vertical-align: middle;"></td>
+                      <tr>
+                        <td style="vertical-align: middle;">{{ $facture['Numero_facture'] }}</td>
+                        <td style="vertical-align: middle;">{{ $facture['Fac_montant'] }}</td>
                         <td style="vertical-align: middle;" class="center">
                             @if($facture['Fac_paye'] == true)
                                 <img src="{{ asset('img/ok.png') }}" alt="ok" width="25" height="25">
                             @endif
                         </td>
-                        <td style="vertical-align: middle;" class="hidden-phone"></td>
-                        <td style="vertical-align: middle;" class="hidden-phone"></td>
+                        <td style="vertical-align: middle;">{{ $facture['Fac_date_facturation'] }}</td>
+                        <td style="vertical-align: middle;">{{ $facture['Fac_date_echeance'] }}</td>
                         <td class="center hidden-phone">
                                 <!-- Split button -->
                             <div class="btn-group">
@@ -46,8 +41,8 @@
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ url('/facture-voir/'.$facture['IDas_facture']) }}">Voir</a></li>
-                                    <li><a href="{{ url('/facture-edit/'.$facture['IDas_facture']) }}">Modifier</a></li>
-                                    <li><a href="{{ url('/facture-delete/'.$facture['IDas_facture']) }}">Supprimer</a></li>
+                                    <li><a href="#" id="{{ $facture['IDas_facture'] }}" class="editer">Modifier</a></li>
+                                    <li><a href="#" id="{{ $facture['IDas_facture'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -60,6 +55,10 @@
         </div>
         <!-- page end-->
       </div>
-
+      @include('factures.edit')
   </section>
+@endsection
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('js/utilisateur.js') }}"></script>
 @endsection
