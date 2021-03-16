@@ -45,7 +45,7 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/factures/'.$partenaire['ap_matricule_pers'].'/partenaire/'.$client['IDas_personne']  ) }}">Factures</a></li>
+                                    <li><a href="{{ url('/factures/'.$partenaire['ap_matricule_pers'].'/partenaire/'.$partenaire['IDas_personne']  ) }}">Factures</a></li>
                                     <li><a href="{{ url('/utilisateurs-portefeuille/'.$partenaire['IDas_personne']).'/partenaire'  }}">Portefeuille</a></li>
                                     <li><a href="{{ url('/utilisateurs-representant/'.$partenaire['IDas_personne']).'/partenaire'  }}">Représentants</a></li>
                                     <li><a href="#" id="{{ $partenaire['IDas_personne'] }}" class="editer">Modifier</a></li>

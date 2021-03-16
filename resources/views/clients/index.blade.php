@@ -8,7 +8,7 @@
         <h4>Chargement en cours...</h4>
     </div>
     <a data-toggle="modal" href="#myModalStoreClient">
-        <div class="btn btn-primary" style="margin-top: 10px;">Ajouter un client  <i class="fa fa-plus"></i></div>
+        <div class="btn btn-primary" style="margin-bottom: 10px;">Ajouter un client  <i class="fa fa-plus"></i></div>
     </a>
     <div class="row mb" style="margin: 0px 1px;">
         <!-- page start-->
