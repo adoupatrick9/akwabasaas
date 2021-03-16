@@ -7,9 +7,6 @@
         <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>
-    <a data-toggle="modal" href="#myModalStoreFacture">
-        <div class="btn btn-primary" style="margin-bottom: 10px;">Ajouter une facture  <i class="fa fa-plus"></i></div>
-    </a>
     <div class="row mb" style="margin: 0px 1px;">
         <!-- page start-->
         <div class="content-panel">
@@ -51,8 +48,6 @@
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ url('/facture-voir/'.$facture['IDas_facture']) }}">Voir</a></li>
-                                    <li><a href="#" id="{{ $facture['IDas_facture'] }}" class="editer">Modifier</a></li>
-                                    <li><a href="#" id="{{ $facture['IDas_facture'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -65,12 +60,6 @@
         </div>
         <!-- page end-->
       </div>
-      @include('factures.create')
-      @include('factures.edit')
   </section>
-@endsection
-
-@section('js')
-    <script type="text/javascript" src="{{ asset('js/facture.js') }}"></script>
 @endsection
 

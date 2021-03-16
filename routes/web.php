@@ -95,10 +95,5 @@ Route::middleware(['verif'])->group(function () {
     //gestion des factures Aucun enregistrement
     Route::get('/factures', 'FactureController@index');
     Route::get('/factures/{matricule}/{element}/{ID}', 'FactureController@indexElement'); // element = partenaire ou client
-    Route::post('/factures-create/{matricule}', 'FactureController@store');
-    Route::get('/factures-edit/{ID}', 'FactureController@edit');
-    Route::post('/factures-update/{ID}/{matricule}', 'FactureController@update');
-    Route::get('/factures-delete/{ID}', 'FactureController@delete');
-    Route::get('/factures-payer-non-payer/{ID}', 'FactureController@regle');
 
 });
