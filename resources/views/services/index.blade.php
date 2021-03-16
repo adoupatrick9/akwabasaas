@@ -4,16 +4,12 @@
 <section class="wrapper mt">
     <h3><i class="fa fa-angle-right"></i> Services</h3>
     <hr>
-    <div class="container">
-        @if(session()->has('message'))
-            <h4 class="alert alert-info text-center">{{ session()->get('message') }}</h4>
-        @endif
+    <div class="col-md-12 text-center text-success chargeM">
+        <h4>Chargement en cours...</h4>
     </div>
-
     <a data-toggle="modal" href="#myModalStoreService">
-        <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un service  <i class="fa fa-plus"></i></div>
+        <div class="btn btn-primary" style="margin-bottom: 10px;">Ajouter un service  <i class="fa fa-plus"></i></div>
     </a>
-
     <div class="row mb" style="margin: 0px 1px;">
         <!-- page start-->
         <div class="content-panel">

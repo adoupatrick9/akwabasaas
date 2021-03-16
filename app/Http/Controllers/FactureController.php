@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\AuthentificationController;
 
 class FactureController extends Controller
@@ -13,9 +14,11 @@ class FactureController extends Controller
         return view('factures.index', compact('factures'));
     }
 
-    public function indexElement(Request $request, $matricule, $element){
+    public function indexElement(Request $request, $matricule, $element, $ID){
+        $user = new UtilisateurController();
+        $proprietaireFacture = $user->RechercherUtilisateur($ID,$request, $element);
         $factures = $this->ListeFacureClientSelonMatriculeClient($request, $matricule);
-        return view('factures.facture-user', compact('factures'));
+        return view('factures.facture-user', compact('factures', 'proprietaireFacture'));
     }
 
     private function ListeFacureClientSelonMatriculeClient(Request $request, $matricule){
@@ -33,9 +36,9 @@ class FactureController extends Controller
         return $factures;
     }
 
-    public function store(Request $request, $matricule, $element){
+    public function store(Request $request, $matricule){
         $this->Validation($request);
-        $data = $this->Affectation(1, $request); // affectation enregistrement
+        $data = $this->Affectation(1, $request, $matricule); // affectation enregistrement
         $msg = $this->EnregistrementModificationOuSuppression(1,$data,$request);
         return $data;
     }
@@ -45,9 +48,9 @@ class FactureController extends Controller
         return $data;
     }
 
-    public function update(Request $request, $ID){
+    public function update(Request $request, $ID, $matricule){
         $this->Validation($request);
-        $data = $this->Affectation(2, $request); // affectation modif
+        $data = $this->Affectation(2, $request, $matricule); // affectation modif
         $msg = $this->EnregistrementModificationOuSuppression(2,$data,$request);
         return $data;
     }

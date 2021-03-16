@@ -4,14 +4,11 @@
 <section class="wrapper mt">
     <h3><i class="fa fa-angle-right"></i> Utilisateurs</h3>
     <hr>
-    <div class="container">
-        @if(session()->has('message'))
-            <h4 class="alert alert-info text-center">{{ session()->get('message') }}</h4>
-        @endif
+    <div class="col-md-12 text-center text-success chargeM">
+        <h4>Chargement en cours...</h4>
     </div>
-
     <a data-toggle="modal" href="#myModalStoreUtilisateur">
-        <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un utilisateur  <i class="fa fa-plus"></i></div>
+        <div class="btn btn-primary" style="margin-bottom: 10px">Ajouter un utilisateur  <i class="fa fa-plus"></i></div>
     </a>
 
     <div class="row mb" style="margin: 0px 1px;">
@@ -24,14 +21,14 @@
                     <th>Login</th>
                     <th>Nom</th>
                     <th>Email</th>
-                    <th>Téléphone mobile</th>
+                    <th>Mobile</th>
                     <th>Inactif</th>
                     <th class="hidden-phone">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                     @foreach ($elements as $user)
-                        <tr >
+                        <tr>
                             <td style="vertical-align: middle;">{{ $user['ap_login_pers'] }}</td>
                             <td style="vertical-align: middle;" class="text-uppercase">{{ $user['NomComplet'] }}</td>
                             <td style="vertical-align: middle;">{{ $user['ap_email_pers'] }}</td>
@@ -58,16 +55,16 @@
                         </tr>
                     @endforeach
                 </tbody>
-              </table>
+            </table>
           </div>
         </div>
         <!-- page end-->
-      </div>
+    </div>
 
     @include('utilisateurs.create')
     @include('utilisateurs.edit')
 
-  </section>
+</section>
 @endsection
 
 @section('js')

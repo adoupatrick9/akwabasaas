@@ -62,11 +62,11 @@ Route::middleware(['verif'])->group(function () {
     Route::get('/utilisateurs-role/{ID}/{element}', 'UtilisateurController@role');
     Route::get('/utilisateurs-base-de-donnee/{ID}/{element}', 'UtilisateurController@ajouterInfoBaseDeDonnee');
     Route::get('/utilisateurs-portefeuille/{ID}/{element}', 'UtilisateurController@portefeuille');
-    Route::post('/utilisateurs-portefeuille-create/{ID}', 'UtilisateurController@portefeuilleCreate');
+    Route::post('/utilisateurs-portefeuille-create/{ID}/{matricule}', 'UtilisateurController@portefeuilleCreate');
     Route::get('/utilisateurs-service/{ID}/{element}', 'UtilisateurController@service');
     Route::get('/utilisateurs-representant/{ID}/{element}', 'UtilisateurController@representant');
     Route::post('/utilisateurs-marquer-interlocuteur-representant/{matricule}', 'UtilisateurController@marquerInterlocuteurRepresentant');
-    Route::get('/utilisateurs-partenaire-portefeuille-retirer/{ID}/{element}', 'UtilisateurController@portefeuilleRetirer');
+    Route::get('/utilisateurs-partenaire-portefeuille-retirer/{ID}', 'UtilisateurController@portefeuilleRetirer');
 
     //gestion des services
     Route::get('/services', 'ServiceController@index');
@@ -94,10 +94,10 @@ Route::middleware(['verif'])->group(function () {
 
     //gestion des factures Aucun enregistrement
     Route::get('/factures', 'FactureController@index');
-    Route::get('/factures/{matricule}/{element}', 'FactureController@indexElement'); // element = partenaire ou client
+    Route::get('/factures/{matricule}/{element}/{ID}', 'FactureController@indexElement'); // element = partenaire ou client
     Route::post('/factures-create/{matricule}', 'FactureController@store');
     Route::get('/factures-edit/{ID}', 'FactureController@edit');
-    Route::post('/factures-update/{ID}', 'FactureController@update');
+    Route::post('/factures-update/{ID}/{matricule}', 'FactureController@update');
     Route::get('/factures-delete/{ID}', 'FactureController@delete');
     Route::get('/factures-payer-non-payer/{ID}', 'FactureController@regle');
 

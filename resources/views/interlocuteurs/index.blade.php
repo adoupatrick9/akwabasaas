@@ -1,9 +1,12 @@
-@extends('layouts.theme')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 
-@section('content')
-<section class="wrapper mt">
-    <h3><i class="fa fa-angle-right"></i> Comptes</h3>
-    <hr>
-
-  </section>
-@endsection
+</body>
+</html>

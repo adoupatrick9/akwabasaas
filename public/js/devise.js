@@ -1,9 +1,12 @@
 $(document).ready(function() {
 
+    $('.chargement').hide(1000); // cache la division au départ
+    $('.chargeM').hide();
+
     // Ajouter une devise
     $('.addDevise').click(function() {
         $('#myModalStoreDevise').modal('show');
-    })  
+    })
     $('#storeDevise').submit(function(e) {
         e.preventDefault();
         var _token = $('input[name="_token"]').val();
@@ -16,7 +19,13 @@ $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
-            }
+            },
+            beforeSend: function() {
+                $('.chargement').show();
+            },
+            complete: function() {
+                $('.chargement').hide();
+            },
         });
         $.ajax({
             type: "post",
@@ -42,6 +51,14 @@ $(document).ready(function() {
     //Modifier une devise
     $('.editer').click(function() {
         var id = $(this).attr('id');
+        $.ajaxSetup({
+            beforeSend: function() {
+                $('.chargeM').show();
+            },
+            complete: function() {
+                $('.chargeM').hide();
+            },
+        });
         $.ajax({
             type: "get",
             url: "/devises-edit/" + id + "/configurations",
@@ -71,7 +88,13 @@ $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
-            }
+            },
+            beforeSend: function() {
+                $('.chargement').show();
+            },
+            complete: function() {
+                $('.chargement').hide();
+            },
         });
         $.ajax({
             type: "post",
@@ -92,7 +115,7 @@ $(document).ready(function() {
     });
 
     // Supprimer
-     $('.supprimer').click(function() {
+    $('.supprimer').click(function() {
         var rep = confirm("Voulez-vous supprimer cette devise ?");
         if (rep == false) {
             return false;
@@ -108,7 +131,7 @@ $(document).ready(function() {
                 window.location.replace("/configurations");
             },
             error: function(data) {
-                 console.log(data);
+                console.log(data);
             }
         });
 

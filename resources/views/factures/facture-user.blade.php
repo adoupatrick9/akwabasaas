@@ -3,12 +3,12 @@
 @section('content')
 <section class="wrapper mt">
     <h3>
-        <i class="fa fa-angle-right"></i> Les facture de <span class="text-uppercase">Nom complet user</span>
+        <i class="fa fa-angle-right"></i> Les factures <span class="text-uppercase">{{ $proprietaireFacture['NomComplet'] }}</span>
         <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>
     <a data-toggle="modal" href="#myModalStoreFacture">
-        <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un facture  <i class="fa fa-plus"></i></div>
+        <div class="btn btn-primary" style="margin-bottom: 10px;">Ajouter une facture  <i class="fa fa-plus"></i></div>
     </a>
     <div class="row mb" style="margin: 0px 1px;">
         <!-- page start-->
@@ -68,5 +68,9 @@
       @include('factures.create')
       @include('factures.edit')
   </section>
+@endsection
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('js/facture.js') }}"></script>
 @endsection
 

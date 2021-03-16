@@ -24,7 +24,11 @@ class UtilisateurController extends Controller
     }
 
     public function store(Request $request, $element){
-        $this->Validation($request);
+        $avec_login = false;
+        if ($element == "utilisateur") {
+            $avec_login = true;
+        }
+        $this->Validation($request, $avec_login);
         $data = $this->Affectation(1, $request, $element); // affectation enregistrement
         $msg = $this->EnregistrementModificationOuSuppression(1,$data,$request, $element);
         return$data;
@@ -37,7 +41,11 @@ class UtilisateurController extends Controller
     }
 
     public function update(Request $request, $ID, $element){
-        $this->Validation($request);
+        $avec_login = false;
+        if ($element == "utilisateur") {
+            $avec_login = true;
+        }
+        $this->Validation($request, $avec_login);
         $data = $this->Affectation(2, $request, $element); // affectation modif
         $msg = $this->EnregistrementModificationOuSuppression(2,$data,$request, $element);
         return$data;
@@ -49,15 +57,22 @@ class UtilisateurController extends Controller
         return$data;
     }
 
-    private function Validation(Request $request){
+    private function Validation(Request $request, $avec_login = false){
+        $login = ""; $type_perse = "'ap_type_pers' => 'required'"; $ville = "'ap_ville_pers' => 'required'"; $pays = "'ap_pays_pers' => 'required'";
+        if ($avec_login == true) {
+            $login = "'ap_login_pers' => 'required'";
+            $type_perse = "";
+            $ville = "";
+            $pays = "";
+        }
         $request->validate([
-            'ap_type_pers' => 'required',
+            $type_perse,
             'ap_nom_pers' => 'required',
             'ap_mobile_pers' => 'required',
             'ap_email_pers' => 'required',
-            'ap_login_pers' => 'required',
-            'ap_ville_pers' => 'required',
-            'ap_pays_pers' => 'required',
+            $ville,
+            $pays,
+            $login
         ]);
     }
 
@@ -237,9 +252,11 @@ class UtilisateurController extends Controller
         $portefeuilles = $this->RecupererPortefeuillePartenaire($request, $ID);
         $IDpartenaire = $ID;
         $partenaire = $this->RechercherUtilisateur($IDpartenaire,$request,'partenaire');
+        $matriculePartenaire = $partenaire['ap_matricule_pers'];
+        //dd($matriculePartenaire);
         $NomComplet = $partenaire['NomComplet'];
-        $clients = $this->ListeClients($request);
-        return view('partenaires.portefeuille', compact('portefeuilles', 'NomComplet', 'IDpartenaire', 'clients'));
+        $pays = $this->ListePays($request);
+        return view('partenaires.portefeuille', compact('portefeuilles', 'NomComplet', 'pays', 'matriculePartenaire', 'IDpartenaire'));
     }
 
     private function RecupererPortefeuillePartenaire(Request $request, $IDpartenaire){
@@ -293,26 +310,40 @@ class UtilisateurController extends Controller
         return $clients;
     }
 
-    public function portefeuilleCreate($ID, Request $request){
+    public function portefeuilleCreate($matricule, $ID, Request $request){
         $userAuth = new AuthentificationController();
         //akwabasaas/utilisateur
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $login = $user['ap_login_pers'];
         $pwd = $user['ap_pwd_pers'];
 
-        /* $partenaire = $this->RechercherUtilisateur($ID,$request,)
-
         $this->Validation($request);
-        $data = $this->Affectation(1, $request, $element); // affectation enregistrement
+        $data = $this->Affectation(1, $request, 'partenaire'); // affectation enregistrement
 
-        $urlEnr = env('APP_URL_SAAS')."$element?login=$login&pwd=$pwd";
+        // Indiquer url d'enregistrement du portefeuille client
+        $urlEnr = env('APP_URL_SAAS')."partenaire?login=$login&pwd=$pwd";
 
         $response = Http::withHeaders([
             'X-Accept' => 'application/json',
         ])->post($urlEnr, $data);
 
-         //dd($response);
-        $msg = $element." enregistré."; */
+        return $response->json();
+    }
+
+    public function portefeuilleRetirer($ID, Request $request){
+        $userAuth = new AuthentificationController();
+        //akwabasaas/utilisateur
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $login = $user['ap_login_pers'];
+        $pwd = $user['ap_pwd_pers'];
+
+        $Portefeuille = $this->RechercherPortefeuilleSelonID($ID, $request);
+
+        // Indiquer url pour retirer un client du portefeuille
+        $urlSup = env('APP_URL_SAAS')."?login=$login&pwd=$pwd";
+
+        Http::delete($urlSup, $Portefeuille);
+
     }
 
     public function representant($ID, Request $request, $element){
@@ -324,61 +355,57 @@ class UtilisateurController extends Controller
         return view('utilisateurs.representant', compact('representants', 'NomComplet', 'user', 'interlocuteurs'));
     }
 
+    private function ListeRepresentant($ID, Request $request, $element){
+            $data = $this->RechercherUtilisateur($ID,$request,$element);
+
+            $userAuth = new AuthentificationController();
+            $user = $userAuth->RecuperationInfosUserConnecte($request);
+            $loginA = $user['ap_login_pers'];
+            $pwdA = $user['ap_pwd_pers'];
+
+            $ap_matricule_pers = $data['ap_matricule_pers'];
+
+            $urlSup = env('APP_URL_SAAS')."representant/$ap_matricule_pers?login=$loginA&pwd=$pwdA";
+            $response = Http::get($urlSup);
+
+            $representants = $response->json();
+
+            return $representants;
+    }
+
+    public function marquerInterlocuteurRepresentant($matricule, Request $request){
+            Request()->validate([
+                'ap_matricule_pers' => 'required',
+            ]);
+
+            $userAuth = new AuthentificationController();
+            //akwabasaas/utilisateur
+            $user = $userAuth->RecuperationInfosUserConnecte($request);
+            $login = $user['ap_login_pers'];
+            $pwd = $user['ap_pwd_pers'];
+
+            $urlRole = env('APP_URL_SAAS')."rolepersonne/$matricule?login=$login&pwd=$pwd";
+            $response = Http::get($urlRole);
+            $LesRoles = $response->json();
+
+            $CodeRoleInterlocuteur = "";
+            foreach ($LesRoles as $role) {
+                if ($role['As_intitulerole'] == "Interlocuteur") {
+                    $CodeRoleInterlocuteur = $role['As_intitulerole'];
+                }
+            }
+
+            $url = env('APP_URL_SAAS')."representant/$matricule/$CodeRoleInterlocuteur?login=$login&pwd=$pwd";
+            $interlocuteurHTTP = Http::get($url);
+            $interlocuteur = $interlocuteurHTTP->json();
+
+            return $interlocuteur;
+    }
+
     public function ajouterInfoBaseDeDonnee($ID, Request $request, $element){
         Request()->validate([
 
         ]);
-    }
-
-    private function ListeRepresentant($ID, Request $request, $element){
-        $data = $this->RechercherUtilisateur($ID,$request,$element);
-
-        $userAuth = new AuthentificationController();
-        $user = $userAuth->RecuperationInfosUserConnecte($request);
-        $loginA = $user['ap_login_pers'];
-        $pwdA = $user['ap_pwd_pers'];
-
-        $ap_matricule_pers = $data['ap_matricule_pers'];
-
-        $urlSup = env('APP_URL_SAAS')."representant/$ap_matricule_pers?login=$loginA&pwd=$pwdA";
-        $response = Http::get($urlSup);
-
-        $representants = $response->json();
-
-        return $representants;
-    }
-
-    public function portefeuilleRetirer(){
-
-    }
-
-    public function marquerInterlocuteurRepresentant($matricule, Request $request){
-        Request()->validate([
-            'ap_matricule_pers' => 'required',
-        ]);
-
-        $userAuth = new AuthentificationController();
-        //akwabasaas/utilisateur
-        $user = $userAuth->RecuperationInfosUserConnecte($request);
-        $login = $user['ap_login_pers'];
-        $pwd = $user['ap_pwd_pers'];
-
-        $urlRole = env('APP_URL_SAAS')."rolepersonne/$matricule?login=$login&pwd=$pwd";
-        $response = Http::get($urlRole);
-        $LesRoles = $response->json();
-
-        $CodeRoleInterlocuteur = "";
-        foreach ($LesRoles as $role) {
-            if ($role['As_intitulerole'] == "Interlocuteur") {
-                $CodeRoleInterlocuteur = $role['As_intitulerole'];
-            }
-        }
-
-        $url = env('APP_URL_SAAS')."representant/$matricule/$CodeRoleInterlocuteur?login=$login&pwd=$pwd";
-        $interlocuteurHTTP = Http::get($url);
-        $interlocuteur = $interlocuteurHTTP->json();
-
-        return back()->with("message", "Interlocuteur marqué représentant");
     }
 
     private function ListeInterlocuteursDisponibles(Request $request){
@@ -405,8 +432,19 @@ class UtilisateurController extends Controller
         return $pays;
     }
 
-    private function ValidationPortefeuille(){
+    private function RechercherPortefeuilleSelonID($ID, Request $request){
+        $userAuth = new AuthentificationController();
+        //akwabasaas/utilisateur
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $login = $user['ap_login_pers'];
+        $pwd = $user['ap_pwd_pers'];
 
+        $urlSup = env('APP_URL_SAAS')."/portefeuille/$ID?login=$login&pwd=$pwd";
+        $response = Http::get($urlSup);
+
+        $Portefeuille = $response->json();
+
+        return $Portefeuille;
     }
 
 }

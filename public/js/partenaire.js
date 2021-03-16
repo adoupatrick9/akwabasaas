@@ -1,27 +1,26 @@
 $(document).ready(function() {
-    
-    $('#ap_type_pers').change(function(){
+
+    $('.chargement').hide(1000); // cache la division au départ
+    $('.chargeM').hide();
+
+    $('#ap_type_pers').change(function() {
         var TypePersonne = $('#ap_type_pers option:selected').val();
         if (TypePersonne == 2) {
-             $(this).parent().removeClass('col-md-3').addClass('col-md-6');
             $('.genreN').hide(1000);
-        }else{
+        } else {
             $('.genreN').show(1000);
-            $(this).parent().removeClass('col-md-6').addClass('col-md-3');
         }
     });
 
-    $('#ap_type').change(function(){
+    $('#ap_type').change(function() {
         var TypePersonne = $('#ap_type option:selected').val();
         if (TypePersonne == 2) {
-            $(this).parent().removeClass('col-md-3').addClass('col-md-6');
             $('.genreE').hide(1000);
-        }else{
+        } else {
             $('.genreE').show(1000);
-            $(this).parent().removeClass('col-md-6').addClass('col-md-3');
         }
     });
-    
+
     $('#addPartenaire').submit(function(e) {
         e.preventDefault();
         var _token = $('meta[name="csrf-token"]').attr('content');
@@ -43,16 +42,22 @@ $(document).ready(function() {
         var ap_adressegeo_pers = $('input[name="ap_adressegeo_pers"]').val();
 
         if (ap_type_pers == "" || ap_nom_pers == "" ||
-        ap_mobile_pers == "" || ap_email_pers == "" ||
-        ap_login_pers == "" || ap_ville_pers == "" ||
-        ap_pays_pers == "" || ap_genre_pers == "" ) {
+            ap_mobile_pers == "" || ap_email_pers == "" ||
+            ap_login_pers == "" || ap_ville_pers == "" ||
+            ap_pays_pers == "" || ap_genre_pers == "") {
             alert('Veuillez renseigner tous les champs obligatoires.');
             return false;
         }
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
-            }
+            },
+            beforeSend: function() {
+                $('.chargement').show();
+            },
+            complete: function() {
+                $('.chargement').hide();
+            },
         });
         $.ajax({
             type: "post",
@@ -93,6 +98,14 @@ $(document).ready(function() {
     //Modifier une service
     $('.editer').click(function() {
         var id = $(this).attr('id');
+        $.ajaxSetup({
+            beforeSend: function() {
+                $('.chargeM').show();
+            },
+            complete: function() {
+                $('.chargeM').hide();
+            },
+        });
         $.ajax({
             type: "get",
             url: "/utilisateurs-edit/" + id + "/partenaire",
@@ -101,8 +114,8 @@ $(document).ready(function() {
                 $('#ap_nom_pers').val(data.ap_nom_pers);
                 $('#ap_prenom_pers').val(data.ap_prenom_pers);
                 $('#ap_login_pers').val(data.ap_login_pers);
-                $('#ap_type option[value="'+data.ap_type_pers+'"]').prop('selected', true);
-                $('#ap_genre option[value="'+data.ap_genre_pers+'"]').prop('selected', true);
+                $('#ap_type option[value="' + data.ap_type_pers + '"]').prop('selected', true);
+                $('#ap_genre option[value="' + data.ap_genre_pers + '"]').prop('selected', true);
                 $('#ap_datenais_pers').val(data.ap_datenais_pers);
                 $('#ap_lieunai_pers').val(data.ap_lieunai_pers);
                 $('#ap_typepiece_pers').val(data.ap_typepiece_pers);
@@ -110,17 +123,15 @@ $(document).ready(function() {
                 $('#ap_mobile_pers').val(data.ap_mobile_pers);
                 $('#ap_telephone_pers').val(data.ap_telephone_pers);
                 $('#ap_email_pers').val(data.ap_email_pers);
-                $('#ap_pays option[value="'+data.ap_pays_pers+'"]').prop('selected', true);
+                $('#ap_pays option[value="' + data.ap_pays_pers + '"]').prop('selected', true);
                 $('#ap_ville_pers').val(data.ap_ville_pers);
                 $('#ap_siteweb_pers').val(data.ap_siteweb_pers);
                 $('#ap_adressepostale_pers').val(data.ap_adressepostale_pers);
                 $('#ap_adressegeo_pers').val(data.ap_adressegeo_pers);
                 if (data.ap_type_pers == 2) {
-                    $('#ap_type').parent().removeClass('col-md-3').addClass('col-md-6');
-                    $('.genreE').hide();
-                }else{
-                    $('.genreE').show();
-                    $('#ap_type').parent().removeClass('col-md-6').addClass('col-md-3');
+                    $('.genreE').hide(1000);
+                } else {
+                    $('.genreE').show(1000);
                 }
                 $('#editPartenaire').attr('action', '/utilisateurs-update/' + id + '/partenaire');
                 $('#IDas_personne').val(id);
@@ -152,9 +163,9 @@ $(document).ready(function() {
         var ap_adressegeo_pers = $('#ap_adressegeo_pers').val();
 
         if (ap_type_pers == "" || ap_nom_pers == "" ||
-        ap_mobile_pers == "" || ap_email_pers == "" ||
-        ap_login_pers == "" || ap_ville_pers == "" ||
-        ap_pays_pers == "" || ap_genre_pers == "" ) {
+            ap_mobile_pers == "" || ap_email_pers == "" ||
+            ap_login_pers == "" || ap_ville_pers == "" ||
+            ap_pays_pers == "" || ap_genre_pers == "") {
             alert('Veuillez renseigner tous les champs obligatoires.');
             return false;
         }
@@ -163,7 +174,13 @@ $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
-            }
+            },
+            beforeSend: function() {
+                $('.chargement').show();
+            },
+            complete: function() {
+                $('.chargement').hide();
+            },
         });
         $.ajax({
             type: "post",
@@ -199,7 +216,7 @@ $(document).ready(function() {
     });
 
     // Supprimer
-     $('.supprimer').click(function() {
+    $('.supprimer').click(function() {
         var rep = confirm("Voulez-vous supprimer ce partenaire ?");
         if (rep == false) {
             return false;
@@ -214,7 +231,7 @@ $(document).ready(function() {
                 window.location.replace("/utilisateurs/partenaire");
             },
             error: function(data) {
-                 console.log(data);
+                console.log(data);
             }
         });
 

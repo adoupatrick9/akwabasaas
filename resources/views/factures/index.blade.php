@@ -60,5 +60,5 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="{{ asset('js/utilisateur.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/facture.js') }}"></script>
 @endsection

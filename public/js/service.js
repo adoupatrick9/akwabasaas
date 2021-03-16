@@ -1,8 +1,11 @@
 $(document).ready(function() {
 
+    $('.chargement').hide(1000); // cache la division au départ
+    $('.chargeM').hide();
+
     $('#addService').submit(function(e) {
         e.preventDefault();
-       
+
         var _token = $('meta[name="csrf-token"]').attr('content');
         var sce_nom_service = $('input[name="sce_nom_service"]').val();
         var sce_type = $('#sce_type_service option:selected').val();
@@ -15,7 +18,13 @@ $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
-            }
+            },
+            beforeSend: function() {
+                $('.chargement').show();
+            },
+            complete: function() {
+                $('.chargement').hide();
+            },
         });
         $.ajax({
             type: "post",
@@ -42,13 +51,21 @@ $(document).ready(function() {
     //Modifier une service
     $('.editer').click(function() {
         var id = $(this).attr('id');
+        $.ajaxSetup({
+            beforeSend: function() {
+                $('.chargeM').show();
+            },
+            complete: function() {
+                $('.chargeM').hide();
+            },
+        });
         $.ajax({
             type: "get",
             url: "/services-edit/" + id + "/services",
             dataType: "json",
             success: function(data) {
                 $('#sce_nom_service').val(data.Sce_nom_service);
-                $('#sce_type option[value='+data.Sce_type_service+']').prop('selected', true);
+                $('#sce_type option[value=' + data.Sce_type_service + ']').prop('selected', true);
                 $('#editService').attr('action', '/services-update/' + id);
                 $('#IDas_service').val(id);
                 $('#myModalEditService').modal('show');
@@ -73,7 +90,13 @@ $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
-            }
+            },
+            beforeSend: function() {
+                $('.chargement').show();
+            },
+            complete: function() {
+                $('.chargement').hide();
+            },
         });
         $.ajax({
             type: "post",
@@ -95,7 +118,7 @@ $(document).ready(function() {
     });
 
     // Supprimer
-     $('.supprimer').click(function() {
+    $('.supprimer').click(function() {
         var rep = confirm("Voulez-vous supprimer ce service ?");
         if (rep == false) {
             return false;
@@ -111,7 +134,7 @@ $(document).ready(function() {
                 window.location.replace("/services");
             },
             error: function(data) {
-                 console.log(data);
+                console.log(data);
             }
         });
 

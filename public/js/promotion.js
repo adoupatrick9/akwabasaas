@@ -1,8 +1,11 @@
 $(document).ready(function() {
 
+    $('.chargement').hide(1000); // cache la division au départ
+    $('.chargeM').hide();
+
     $('#addPromo').submit(function(e) {
         e.preventDefault();
-       
+
         var _token = $('meta[name="csrf-token"]').attr('content');
         var pro_intitule = $('input[name="pro_intitule"]').val();
         var Sce_code_service = $('#Sce_code_service option:selected').val();
@@ -16,10 +19,10 @@ $(document).ready(function() {
         var pro_cout_annuel = $('input[name="pro_cout_annuel"]').val();
 
         if (pro_intitule == "" || Sce_code_service == "" ||
-        Dev_code_devise == "" || pro_debut_periode == "" ||
-        pro_fin_periode == "" || pro_cout_unitaire == "" ||
-        pro_cout_mensuel == "" || pro_cout_trimestriel == "" ||
-        pro_cout_semestriel == "" || pro_cout_annuel == "") {
+            Dev_code_devise == "" || pro_debut_periode == "" ||
+            pro_fin_periode == "" || pro_cout_unitaire == "" ||
+            pro_cout_mensuel == "" || pro_cout_trimestriel == "" ||
+            pro_cout_semestriel == "" || pro_cout_annuel == "") {
             alert('Aucun champ ne doit être vide.');
             $('input[name="pro_intitule"]').focus();
             return false;
@@ -27,7 +30,13 @@ $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
-            }
+            },
+            beforeSend: function() {
+                $('.chargement').show();
+            },
+            complete: function() {
+                $('.chargement').hide();
+            },
         });
         $.ajax({
             type: "post",
@@ -62,14 +71,22 @@ $(document).ready(function() {
     //Modifier une service
     $('.editer').click(function() {
         var id = $(this).attr('id');
+        $.ajaxSetup({
+            beforeSend: function() {
+                $('.chargeM').show();
+            },
+            complete: function() {
+                $('.chargeM').hide();
+            },
+        });
         $.ajax({
             type: "get",
             url: "/promotions-edit/" + id + "/promotions",
             dataType: "json",
             success: function(data) {
                 $('#pro_intitule').val(data.pro_intitule);
-                $('#Sce_code option[value='+data.Sce_code_service+']').prop('selected', true);
-                $('#Dev_code option[value='+data.Dev_code_devise+']').prop('selected', true);
+                $('#Sce_code option[value=' + data.Sce_code_service + ']').prop('selected', true);
+                $('#Dev_code option[value=' + data.Dev_code_devise + ']').prop('selected', true);
                 $('#pro_debut_periode').val(data.pro_debut_periode);
                 $('#pro_fin_periode').val(data.pro_fin_periode);
                 $('#pro_cout_unitaire').val(data.pro_cout_unitaire);
@@ -101,10 +118,10 @@ $(document).ready(function() {
         var pro_cout_annuel = $('#pro_cout_annuel').val();
 
         if (pro_intitule == "" || Sce_code_service == "" ||
-        Dev_code_devise == "" || pro_debut_periode == "" ||
-        pro_fin_periode == "" || pro_cout_unitaire == "" ||
-        pro_cout_mensuel == "" || pro_cout_trimestriel == "" ||
-        pro_cout_semestriel == "" || pro_cout_annuel == "") {
+            Dev_code_devise == "" || pro_debut_periode == "" ||
+            pro_fin_periode == "" || pro_cout_unitaire == "" ||
+            pro_cout_mensuel == "" || pro_cout_trimestriel == "" ||
+            pro_cout_semestriel == "" || pro_cout_annuel == "") {
             alert('Aucun champ ne doit être vide.');
             $('#pro_intitule').focus();
             return false;
@@ -114,7 +131,13 @@ $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
-            }
+            },
+            beforeSend: function() {
+                $('.chargement').show();
+            },
+            complete: function() {
+                $('.chargement').hide();
+            },
         });
         $.ajax({
             type: "post",
@@ -144,7 +167,7 @@ $(document).ready(function() {
     });
 
     // Supprimer
-     $('.supprimer').click(function() {
+    $('.supprimer').click(function() {
         var rep = confirm("Voulez-vous supprimer cette promotion ?");
         if (rep == false) {
             return false;
@@ -159,7 +182,7 @@ $(document).ready(function() {
                 window.location.replace("/promotions");
             },
             error: function(data) {
-                 console.log(data);
+                console.log(data);
             }
         });
 

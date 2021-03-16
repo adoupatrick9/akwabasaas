@@ -4,14 +4,11 @@
 <section class="wrapper mt">
     <h3><i class="fa fa-angle-right"></i> Clients</h3>
     <hr>
-    <div class="container">
-      @if(session()->has('message'))
-          <h4 class="alert alert-info text-center">{{ session()->get('message') }}</h4>
-      @endif
+    <div class="col-md-12 text-center text-success chargeM">
+        <h4>Chargement en cours...</h4>
     </div>
-
     <a data-toggle="modal" href="#myModalStoreClient">
-        <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un client  <i class="fa fa-plus"></i></div>
+        <div class="btn btn-primary" style="margin-top: 10px;">Ajouter un client  <i class="fa fa-plus"></i></div>
     </a>
     <div class="row mb" style="margin: 0px 1px;">
         <!-- page start-->
@@ -46,7 +43,7 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/factures/'.$client['ap_matricule_pers'].'/client' ) }}">Factures</a></li>
+                                    <li><a href="{{ url('/factures/'.$client['ap_matricule_pers'].'/client/'.$client['IDas_personne'] ) }}">Factures</a></li>
                                     <li><a href="{{ url('/utilisateurs-service/'.$client['IDas_personne']).'/client'  }}">Services souscrits</a></li>
                                     <li><a href="{{ url('/utilisateurs-representant/'.$client['IDas_personne']).'/client'  }}">Représentants</a></li>
                                     <li><a href="#" id="{{ $client['IDas_personne'] }}" class="editer">Modifier</a></li>

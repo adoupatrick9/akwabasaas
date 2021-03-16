@@ -4,6 +4,9 @@
 
         <section class="wrapper">
           <h3><i class="fa fa-angle-right"></i> Configurations</h3>
+          <div class="col-md-12 text-center text-success chargeM">
+            <h4>Chargement en cours...</h4>
+           </div>
           <div class="row mt">
             <div class="col-lg-6">
               <div class="content-panel">

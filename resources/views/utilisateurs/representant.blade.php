@@ -12,8 +12,8 @@
           <h4 class="alert alert-info text-center">{{ session()->get('message') }}</h4>
       @endif
     </div>
-    <a data-toggle="modal" href="{{ URL::Current().'#myModalStore' }}">
-        <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un représentant  <i class="fa fa-plus"></i></div>
+    <a data-toggle="modal" href="#myModalStoreRepresentant">
+        <div class="btn btn-primary" style="margin-bottom: 10px;">Ajouter un représentant  <i class="fa fa-plus"></i></div>
     </a>
     <div class="row mb" style="margin: 0px 1px;">
         <!-- page start-->
@@ -25,7 +25,6 @@
                         <th>Nom complet</th>
                         <th>Mobile</th>
                         <th>Email</th>
-                        <th class="hidden-phone">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -34,7 +33,6 @@
                         <td class="text-uppercase">{{ $representant['NomComplet'] }}</td>
                         <td>{{ $representant['ap_mobile_pers'] }}</td>
                         <td>{{ $representant['ap_email_pers'] }}</td>
-                        <td><a class="btn btn-outline-success btn-sm hidden-phone" href="{{ url('/representant-retirer/') }}">Retirer</a></td>
                       </tr>
                     @endforeach
 
@@ -46,5 +44,9 @@
       </div>
   </section>
   @include('utilisateurs/representant-create')
+@endsection
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('js/representant.js') }}"></script>
 @endsection
 

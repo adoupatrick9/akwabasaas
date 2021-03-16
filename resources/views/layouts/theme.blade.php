@@ -14,23 +14,21 @@
     <!-- Favicons -->
     <link href="{{ asset('img/logo.png') }}" rel="icon">
     <link href="{{ asset('img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!--external css-->
     <link href="{{ asset('lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/zabuto_calendar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('lib/gritter/css/jquery.gritter.css') }}" />
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
-    <script src="{{ asset('lib/chart-master/Chart.js') }}"></script>
-
     <!--datatable css-->
     <link href="{{ asset('lib/advanced-datatable/css/demo_page.css') }}" rel="stylesheet" />
     <link href="{{ asset('lib/advanced-datatable/css/demo_table.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('lib/advanced-datatable/css/DT_bootstrap.css') }}" />
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/zabuto_calendar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('lib/gritter/css/jquery.gritter.css') }}" />
+    <script src="{{ asset('lib/chart-master/Chart.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('dist/jquery-pretty-tabs.css') }}">
 
 @yield('css')
@@ -315,7 +313,7 @@
           <li class="sub-menu">
           </li>
           <li class="sub-menu centered">
-              <div class="centered" style="padding: 70px 0px;">
+              <div class="centered" style="padding-top: 90px;">
                   <hr><i class="fa fa-user-circle" style="font-size: 50px;"></i>
                   <h5 class="text-uppercase" style="color: white;"> {{ session()->get('user.NomComplet') }}</h5><hr>
               </div>
@@ -340,21 +338,25 @@
 
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
-
   <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
-  <script class="include" type="text/javascript" src="{{ asset('lib/jquery.dcjqaccordion.2.7.js') }}"></script>
+
   <script src="{{ asset('dist/jquery-pretty-tabs.js') }}"></script>
-  <script src="{{ asset('lib/jquery.scrollTo.min.js') }}"></script>
-  <script src="{{ asset('lib/jquery.nicescroll.js') }}" type="text/javascript"></script>
+
   <script src="{{ asset('lib/jquery.sparkline.js') }}"></script>
-  <!--common script for all pages-->
-  <script src="{{ asset('lib/common-scripts.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/gritter/js/jquery.gritter.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/gritter-conf.js') }}"></script>
   <!--script for this page-->
   <script src="{{ asset('lib/sparkline-chart.js') }}"></script>
   <script src="{{ asset('lib/zabuto_calendar.js') }}"></script>
 
+  <script class="include" type="text/javascript" src="{{ asset('lib/jquery.dcjqaccordion.2.7.js') }}"></script>
+  <script src="{{ asset('lib/jquery.scrollTo.min.js') }}"></script>
+  <script src="{{ asset('lib/jquery.nicescroll.js') }}" type="text/javascript"></script>
+  <!--datatable JS-->
+  <script type="text/javascript" language="javascript" src="{{ asset('lib/advanced-datatable/js/jquery.dataTables.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/advanced-datatable/js/DT_bootstrap.js') }}"></script>
+  <!--common script for all pages-->
+  <script src="{{ asset('lib/common-scripts.js') }}"></script>
 
 <!--script for this page-->
 <script type="text/javascript">
@@ -384,37 +386,14 @@
 
 <script type="application/javascript">
     $(document).ready(function() {
-      /* $("#date-popover").popover({
+      $("#date-popover").popover({
         html: true,
         trigger: "manual"
-      }); */
+      });
       $("#date-popover").hide();
       $("#date-popover").click(function(e) {
         $(this).hide();
       });
-
-      /* $("#my-calendar").zabuto_calendar({
-        action: function() {
-          return myDateFunction(this.id, false);
-        },
-        action_nav: function() {
-          return myNavFunction(this.id);
-        },
-        ajax: {
-          url: "show_data.php?action=1",
-          modal: true
-        },
-        legend: [{
-            type: "text",
-            label: "Special event",
-            badge: "00"
-          },
-          {
-            type: "block",
-            label: "Regular event",
-          }
-        ]
-      }); */
     });
 
     function myNavFunction(id) {
@@ -443,28 +422,8 @@
             ]
           });
 
-          /* Add event listener for opening and closing details
-           * Note that the indicator for showing which row is open is not controlled by DataTables,
-           * rather it is done here
-           */
-          $('#hidden-table-info tbody td img').live('click', function() {
-            var nTr = $(this).parents('tr')[0];
-            if (oTable.fnIsOpen(nTr)) {
-              /* This row is already open - close it */
-              this.src = "lib/advanced-datatable/media/images/details_open.png";
-              oTable.fnClose(nTr);
-            } else {
-              /* Open this row */
-              this.src = "lib/advanced-datatable/images/details_close.png";
-              oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
-            }
-          });
         });
       </script>
-
-      <!--datatable JS-->
-  <script type="text/javascript" language="javascript" src="{{ asset('lib/advanced-datatable/js/jquery.dataTables.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/advanced-datatable/js/DT_bootstrap.js') }}"></script>
 </body>
 
 </html>

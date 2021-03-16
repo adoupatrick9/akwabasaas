@@ -32,6 +32,7 @@
                           <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>
                           <button class="btn btn-theme" type="submit" id="submit">Enregistrer <i class="fa fa-save"></i></button>
                     </div>
+                    <input type="text" name="Ap_matricule_pers" id="Ap_matricule_pers" class="hidden" value="{{ $proprietaireFacture['ap_matricule_pers'] }}">
                 </div>
             </div>
           </form>
