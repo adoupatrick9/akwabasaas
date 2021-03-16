@@ -3,7 +3,7 @@
 @section('content')
 <section class="wrapper mt">
     <h3>
-        <i class="fa fa-angle-right"></i> Les répresentants de <span class="text-uppercase">{{ $NomComplet }}</span>
+        <i class="fa fa-angle-right"></i> Les répresentants de <span class="text-uppercase">{{ $nomComplet }}</span>
         <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>
@@ -30,7 +30,7 @@
                   <tbody>
                     @foreach($representants as $representant)
                       <tr>
-                        <td class="text-uppercase">{{ $representant['NomComplet'] }}</td>
+                        <td class="text-uppercase">{{ $representant['nomComplet'] }}</td>
                         <td>{{ $representant['ap_mobile_pers'] }}</td>
                         <td>{{ $representant['ap_email_pers'] }}</td>
                       </tr>

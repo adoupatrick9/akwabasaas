@@ -20,7 +20,7 @@
                     </select>
                 </div>
             </div>
-            <input type="number" class="hidden" id="IDas_service">
+            <input type="number" class="hidden" id="idas_service">
             <div class="modal-footer">
               <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>
               <button class="btn btn-theme" type="submit">Modifier <i class="fa fa-edit"></i></button>

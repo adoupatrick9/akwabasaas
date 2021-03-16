@@ -315,7 +315,7 @@
           <li class="sub-menu centered">
               <div class="centered" style="padding-top: 90px;">
                   <hr><i class="fa fa-user-circle" style="font-size: 50px;"></i>
-                  <h5 class="text-uppercase" style="color: white;"> {{ session()->get('user.NomComplet') }}</h5><hr>
+                  <h5 class="text-uppercase" style="color: white;"> {{ session()->get('user.nomComplet') }}</h5><hr>
               </div>
           </li>
         </ul>

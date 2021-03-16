@@ -100,6 +100,14 @@ $(document).ready(function() {
     //Modifier une service
     $('.editer').click(function() {
         var id = $(this).attr('id');
+        $.ajaxSetup({
+            beforeSend: function() {
+                $('.chargeM').show();
+            },
+            complete: function() {
+                $('.chargeM').hide();
+            },
+        });
         $.ajax({
             type: "get",
             url: "/utilisateurs-edit/" + id + "/client",
@@ -128,7 +136,7 @@ $(document).ready(function() {
                     $('.genreE').show(1000);
                 }
                 $('#editClient').attr('action', '/utilisateurs-update/' + id + '/client');
-                $('#IDas_personne').val(id);
+                $('#idas_personne').val(id);
                 $('#myModalEditClient').modal('show');
             },
             error: function(data) {
@@ -164,7 +172,7 @@ $(document).ready(function() {
             alert('Veuillez renseigner tous les champs obligatoires.');
             return false;
         }
-        var IDas_personne = $('#IDas_personne').val();
+        var idas_personne = $('#idas_personne').val();
         var MonUrl = $(this).attr('action');
         $.ajaxSetup({
             headers: {
@@ -181,7 +189,7 @@ $(document).ready(function() {
             type: "post",
             url: MonUrl,
             data: {
-                IDas_personne: IDas_personne,
+                idas_personne: idas_personne,
                 ap_nom_pers: ap_nom_pers,
                 ap_prenom_pers: ap_prenom_pers,
                 ap_login_pers: ap_login_pers,

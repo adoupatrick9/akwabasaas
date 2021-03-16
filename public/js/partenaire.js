@@ -134,7 +134,7 @@ $(document).ready(function() {
                     $('.genreE').show(1000);
                 }
                 $('#editPartenaire').attr('action', '/utilisateurs-update/' + id + '/partenaire');
-                $('#IDas_personne').val(id);
+                $('#idas_personne').val(id);
                 $('#myModalEditPartenaire').modal('show');
             },
             error: function(data) {
@@ -169,7 +169,7 @@ $(document).ready(function() {
             alert('Veuillez renseigner tous les champs obligatoires.');
             return false;
         }
-        var IDas_personne = $('#IDas_personne').val();
+        var idas_personne = $('#idas_personne').val();
         var MonUrl = $(this).attr('action');
         $.ajaxSetup({
             headers: {
@@ -186,7 +186,7 @@ $(document).ready(function() {
             type: "post",
             url: MonUrl,
             data: {
-                IDas_personne: IDas_personne,
+                idas_personne: idas_personne,
                 ap_nom_pers: ap_nom_pers,
                 ap_login_pers: ap_login_pers,
                 ap_type_pers: ap_type_pers,

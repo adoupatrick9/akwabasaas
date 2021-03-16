@@ -21,9 +21,9 @@
                     </select>
                 </div>
                 <div class="col-md-6 form-group">
-                    Devise <em class="text-danger">*</em><select name="Dev_code_devise" id="Dev_code" class="form-control placeholder-no-fix">
+                    Devise <em class="text-danger">*</em><select name="dev_code_devise" id="Dev_code" class="form-control placeholder-no-fix">
                         @foreach($devises as $devise)
-                            <option value="{{ $devise['Dev_code_devise'] }}">{{ $devise['Dev_intitule_devise'] }}</option>
+                            <option value="{{ $devise['dev_code_devise'] }}">{{ $devise['dev_intitule_devise'] }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="col-md-6 form-group">
                     Coût annuel <em class="text-danger">*</em><input type="number" name="pro_cout_annuel" id="pro_cout_annuel" autocomplete="on" class="form-control placeholder-no-fix">
                 </div>
-                <input type="number" name="IDas_promotion" id="IDas_promotion" class="hidden">
+                <input type="number" name="idas_promotion" id="idas_promotion" class="hidden">
             </div>
             <div class="modal-footer">
               <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>

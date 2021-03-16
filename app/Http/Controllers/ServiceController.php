@@ -61,12 +61,12 @@ class ServiceController extends Controller
     private function Affectation(int $action, Request $request){
 
         $data = array();
-        $IDas_service = 0;
+        $idas_service = 0;
         if ($action == 2) {
-            $IDas_service = Request('IDas_service');
+            $idas_service = Request('idas_service');
         }
 
-        $data = $this->RechercherService($IDas_service,$request);
+        $data = $this->RechercherService($idas_service,$request);
 
         $sce_nom = Request('sce_nom_service');
         $sce_type = Request('sce_type');
@@ -80,10 +80,10 @@ class ServiceController extends Controller
 
         $data = array();
         $data = [
-            "IDas_service" => $IDas_service,
+            "idas_service" => $idas_service,
             "sce_code_service" => $Sce_code,
-            "Sce_nom_service" => $sce_nom,
-            "Sce_type_service" => $sce_type,
+            "sce_nom_service" => $sce_nom,
+            "sce_type_service" => $sce_type,
             "ajoute_le" => $ajoute_le,
             "modifie_le" => $modifie_le,
             "ajoute_par" => $ajoute_par,
@@ -101,7 +101,7 @@ class ServiceController extends Controller
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $loginA = $user['ap_login_pers'];
         $pwdA = $user['ap_pwd_pers'];
-        $IDas_service = $data['IDas_service'];
+        $idas_service = $data['idas_service'];
         $msg = "";
 
         //dd($loginA, $pwdA);
@@ -121,7 +121,7 @@ class ServiceController extends Controller
 
         }else if ($action == 3) {
             //$urlSup = "api.pierisaas.net/akwabasaas/service/3?login=ADMIN&pwd=ADMIN";
-            $urlSup = env('APP_URL_SAAS')."service/$IDas_service?login=$loginA&pwd=$pwdA";
+            $urlSup = env('APP_URL_SAAS')."service/$idas_service?login=$loginA&pwd=$pwdA";
             Http::delete($urlSup, $data);
             $msg = "Le service a bien été supprimé.";
 

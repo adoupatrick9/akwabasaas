@@ -3,7 +3,7 @@
 @section('content')
 <section class="wrapper mt">
     <h3>
-        <i class="fa fa-angle-right"></i> Les factures <span class="text-uppercase">{{ $proprietaireFacture['NomComplet'] }}</span>
+        <i class="fa fa-angle-right"></i> Les factures <span class="text-uppercase">{{ $proprietaireFacture['nomComplet'] }}</span>
         <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>

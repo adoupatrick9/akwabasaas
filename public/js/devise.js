@@ -10,10 +10,10 @@ $(document).ready(function() {
     $('#storeDevise').submit(function(e) {
         e.preventDefault();
         var _token = $('input[name="_token"]').val();
-        var intitule = $('input[name="Dev_intitule_devise"]').val();
+        var intitule = $('input[name="dev_intitule_devise"]').val();
         if (intitule == "") {
             alert('Le nom de la devise ne doit pas être vide.');
-            $('input[name="Dev_intitule_devise"]').focus();
+            $('input[name="dev_intitule_devise"]').focus();
             return false;
         }
         $.ajaxSetup({
@@ -31,7 +31,7 @@ $(document).ready(function() {
             type: "post",
             url: "/devises-create",
             data: {
-                Dev_intitule_devise: intitule
+                dev_intitule_devise: intitule
             },
             dataType: 'html',
             success: function(response) {
@@ -64,9 +64,9 @@ $(document).ready(function() {
             url: "/devises-edit/" + id + "/configurations",
             dataType: "json",
             success: function(data) {
-                $('#Dev_intitule_devise').val(data.Dev_intitule_devise);
+                $('#dev_intitule_devise').val(data.dev_intitule_devise);
                 $('#EditDevise').attr('action', '/devises-update/' + id);
-                $('#IDas_devise').val(id);
+                $('#idas_devise').val(id);
                 $('#myModalEditDevise').modal('show');
             },
             error: function(data) {
@@ -77,12 +77,12 @@ $(document).ready(function() {
     $('#EditDevise').submit(function(e) {
         e.preventDefault();
         var _token = $('meta[name="csrf-token"]').attr('content');
-        var Dev_intitule_devise = $('#Dev_intitule_devise').val();
-        var IDas_devise = $('#IDas_devise').val();
+        var dev_intitule_devise = $('#dev_intitule_devise').val();
+        var idas_devise = $('#idas_devise').val();
         var MonUrl = $(this).attr('action');
-        if (Dev_intitule_devise == "") {
+        if (dev_intitule_devise == "") {
             alert('Le nom de la devise ne doit pas être vide.');
-            $('input[name="Dev_intitule_devise"]').focus();
+            $('input[name="dev_intitule_devise"]').focus();
             return false;
         }
         $.ajaxSetup({
@@ -100,8 +100,8 @@ $(document).ready(function() {
             type: "post",
             url: MonUrl,
             data: {
-                IDas_devise: IDas_devise,
-                Dev_intitule_devise: Dev_intitule_devise
+                idas_devise: idas_devise,
+                dev_intitule_devise: dev_intitule_devise
             },
             dataType: "json",
             success: function(data) {

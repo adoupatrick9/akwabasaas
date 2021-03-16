@@ -21,9 +21,9 @@
                     </select>
                 </div>
                 <div class="col-md-6 form-group">
-                    Devise <em class="text-danger">*</em><select name="Dev_code_devise" id="Dev_code_devise" class="form-control placeholder-no-fix">
+                    Devise <em class="text-danger">*</em><select name="dev_code_devise" id="dev_code_devise" class="form-control placeholder-no-fix">
                         @foreach($devises as $devise)
-                            <option value="{{ $devise['Dev_code_devise'] }}">{{ $devise['Dev_intitule_devise'] }}</option>
+                            <option value="{{ $devise['dev_code_devise'] }}">{{ $devise['dev_intitule_devise'] }}</option>
                         @endforeach
                     </select>
                 </div>

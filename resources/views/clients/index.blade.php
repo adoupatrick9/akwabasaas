@@ -30,7 +30,7 @@
                 @foreach($elements as $client)
                   <tr class="gradeC">
                     <td class="hidden-phone" style="vertical-align: middle;">{{ $client['ap_matricule_pers'] }}</td>
-                    <td style="vertical-align: middle;" class="text-uppercase">{{ $client['NomComplet'] }}</td>
+                    <td style="vertical-align: middle;" class="text-uppercase">{{ $client['nomComplet'] }}</td>
                     <td style="vertical-align: middle;">{{ $client['ap_email_pers'] }}</td>
                     <td style="vertical-align: middle;">{{ $client['ap_mobile_pers'] }}</td>
                     <td class="hidden-phone" style="vertical-align: middle;">{{ $client['ap_pays_pers'] }}</td>
@@ -43,12 +43,12 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/factures/'.$client['ap_matricule_pers'].'/client/'.$client['IDas_personne'] ) }}">Factures</a></li>
-                                    <li><a href="{{ url('/utilisateurs-service/'.$client['IDas_personne']).'/client'  }}">Services souscrits</a></li>
-                                    <li><a href="{{ url('/utilisateurs-representant/'.$client['IDas_personne']).'/client'  }}">Représentants</a></li>
-                                    <li><a href="#" id="{{ $client['IDas_personne'] }}" class="editer">Modifier</a></li>
-                                    <li><a href="{{ url('/utilisateurs-actif-inactif/'.$client['IDas_personne']).'/client'  }}">Activer/Désactiver</a></li>
-                                    <li><a href="#" id="{{ $client['IDas_personne'] }}" class="supprimer">Supprimer</a></li>
+                                    <li><a href="{{ url('/factures/'.$client['ap_matricule_pers'].'/client/'.$client['idas_personne'] ) }}">Factures</a></li>
+                                    <li><a href="{{ url('/utilisateurs-service/'.$client['idas_personne']).'/client'  }}">Services souscrits</a></li>
+                                    <li><a href="{{ url('/utilisateurs-representant/'.$client['idas_personne']).'/client'  }}">Représentants</a></li>
+                                    <li><a href="#" id="{{ $client['idas_personne'] }}" class="editer">Modifier</a></li>
+                                    <li><a href="{{ url('/utilisateurs-actif-inactif/'.$client['idas_personne']).'/client'  }}">Activer/Désactiver</a></li>
+                                    <li><a href="#" id="{{ $client['idas_personne'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                     </td>

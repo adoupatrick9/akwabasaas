@@ -12,7 +12,7 @@
                 <div class="col-md-8 form-group">
                     Service <em class="text-danger">*</em><select name="Sce_code_service" id="Sce_code_service" class="form-control placeholder-no-fix">
                         @foreach($services as $service)
-                            <option value="{{ $service['sce_code_service'] }}">{{ $service['Sce_nom_service'] }}</option>
+                            <option value="{{ $service['sce_code_service'] }}">{{ $service['sce_nom_service'] }}</option>
                         @endforeach
                     </select>
                 </div>

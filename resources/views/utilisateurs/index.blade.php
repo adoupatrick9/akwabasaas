@@ -30,7 +30,7 @@
                     @foreach ($elements as $user)
                         <tr>
                             <td style="vertical-align: middle;">{{ $user['ap_login_pers'] }}</td>
-                            <td style="vertical-align: middle;" class="text-uppercase">{{ $user['NomComplet'] }}</td>
+                            <td style="vertical-align: middle;" class="text-uppercase">{{ $user['nomComplet'] }}</td>
                             <td style="vertical-align: middle;">{{ $user['ap_email_pers'] }}</td>
                             <td style="vertical-align: middle;">{{ $user['ap_mobile_pers'] }}</td>
                             <td style="vertical-align: middle;" class="center">
@@ -46,9 +46,9 @@
                                         <span class="caret"></span>
                                         </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#" id="{{ $user['IDas_personne'] }}" class="editer">Modifier</a></li>
-                                        <li><a href="{{ url('/utilisateurs-actif-inactif/'.$user['IDas_personne'].'/utilisateur' ) }}">Activer/Désactiver</a></li>
-                                        <li><a href="#" id="{{ $user['IDas_personne'] }}" class="supprimer">Supprimer</a></li>
+                                        <li><a href="#" id="{{ $user['idas_personne'] }}" class="editer">Modifier</a></li>
+                                        <li><a href="{{ url('/utilisateurs-actif-inactif/'.$user['idas_personne'].'/utilisateur' ) }}">Activer/Désactiver</a></li>
+                                        <li><a href="#" id="{{ $user['idas_personne'] }}" class="supprimer">Supprimer</a></li>
                                     </ul>
                                 </div>
                             </td>

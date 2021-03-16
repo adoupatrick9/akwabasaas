@@ -76,25 +76,18 @@ class UtilisateurController extends Controller
         ]);
     }
 
-    private function Affectation(int $action, Request $request,$element){
-
-        $userAuth = new AuthentificationController();
-        $MatriculePartenaire = "";
+    private function Affectation(int $action, Request $request,$element, $MatriculePartenaire = ""){
         $data = array();
-        $IDas_personne = 0;
+        $idas_personne = 0;
 
-        ($action == 2) ? $IDas_personne = Request('IDas_personne') : $IDas_personne = 0;
-        $dataRes = $this->RechercherUtilisateur($IDas_personne,$request, $element);
-
-        $valeur = $userAuth->VerificationPartenaire($request);
-        $dataUserAuth = $userAuth->RecuperationInfosUserConnecte($request);
-        ($valeur == true) ? $MatriculePartenaire = $dataUserAuth['ap_matricule_pers'] : $MatriculePartenaire = "";
+        ($action == 2) ? $idas_personne = Request('idas_personne') : $idas_personne = 0;
+        $dataRes = $this->RechercherUtilisateur($idas_personne,$request, $element);
 
         $ap_genre_pers = "";
         (Request('ap_type_pers') == "1") ? $ap_genre_pers = Request('ap_genre_pers') : $ap_genre_pers = ""  ;
 
         $data = [
-            "IDas_personne" => $dataRes['IDas_personne'],
+            "idas_personne" => $dataRes['idas_personne'],
             "ap_matricule_pers" => $dataRes['ap_matricule_pers'],
             "ap_type_pers" => Request('ap_type_pers'),
             "ap_nom_pers" => Request('ap_nom_pers'),
@@ -119,7 +112,7 @@ class UtilisateurController extends Controller
             "ajoute_par" => $dataRes['ajoute_par'],
             "modifie_le" => $dataRes['modifie_le'],
             "modifie_par" => $dataRes['modifie_par'],
-            "MatriculePartenaire" => $MatriculePartenaire,
+            "matriculePartenaire" => $MatriculePartenaire,
         ];
 
         return $data;
@@ -131,7 +124,7 @@ class UtilisateurController extends Controller
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $loginA = $user['ap_login_pers'];
         $pwdA = $user['ap_pwd_pers'];
-        $IDas_personne = $data['IDas_personne'];
+        $idas_personne = $data['idas_personne'];
         $msg = "";
 
         //dd($loginA, $pwdA);
@@ -154,7 +147,7 @@ class UtilisateurController extends Controller
 
         }else if ($action == 3) {
             //$urlSup = "api.pierisaas.net/akwabasaas/$element/3?login=ADMIN&pwd=ADMIN";
-            $urlSup = env('APP_URL_SAAS')."$element/$IDas_personne?login=$loginA&pwd=$pwdA";
+            $urlSup = env('APP_URL_SAAS')."$element/$idas_personne?login=$loginA&pwd=$pwdA";
             Http::delete($urlSup, $data);
             $msg = $element." supprimé.";
 
@@ -224,7 +217,7 @@ class UtilisateurController extends Controller
         $IDclient = $ID;
 
         $client = $this->RechercherUtilisateur($IDclient,$request,$element);
-        $NomClient = $client['NomComplet'];
+        $NomClient = $client['nomComplet'];
 
         return view('services-client.index', compact('ServicesClient', 'services', 'IDclient', 'NomClient'));
     }
@@ -254,9 +247,9 @@ class UtilisateurController extends Controller
         $partenaire = $this->RechercherUtilisateur($IDpartenaire,$request,'partenaire');
         $matriculePartenaire = $partenaire['ap_matricule_pers'];
         //dd($matriculePartenaire);
-        $NomComplet = $partenaire['NomComplet'];
+        $nomComplet = $partenaire['nomComplet'];
         $pays = $this->ListePays($request);
-        return view('partenaires.portefeuille', compact('portefeuilles', 'NomComplet', 'pays', 'matriculePartenaire', 'IDpartenaire'));
+        return view('partenaires.portefeuille', compact('portefeuilles', 'nomComplet', 'pays', 'matriculePartenaire', 'IDpartenaire'));
     }
 
     private function RecupererPortefeuillePartenaire(Request $request, $IDpartenaire){
@@ -310,23 +303,18 @@ class UtilisateurController extends Controller
         return $clients;
     }
 
-    public function portefeuilleCreate($matricule, $ID, Request $request){
+    public function portefeuilleCreate($ID, $matricule,  Request $request){
         $userAuth = new AuthentificationController();
         //akwabasaas/utilisateur
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $login = $user['ap_login_pers'];
         $pwd = $user['ap_pwd_pers'];
-
         $this->Validation($request);
-        $data = $this->Affectation(1, $request, 'partenaire'); // affectation enregistrement
-
-        // Indiquer url d'enregistrement du portefeuille client
-        $urlEnr = env('APP_URL_SAAS')."partenaire?login=$login&pwd=$pwd";
-
+        $data = $this->Affectation(1, $request, 'client', $matricule); // affectation enregistrement
+        $urlEnr = env('APP_URL_SAAS')."client?login=$login&pwd=$pwd";
         $response = Http::withHeaders([
             'X-Accept' => 'application/json',
         ])->post($urlEnr, $data);
-
         return $response->json();
     }
 
@@ -351,8 +339,8 @@ class UtilisateurController extends Controller
         $interlocuteurs = $this->ListeInterlocuteursDisponibles($request);
         $IDuser= $ID;
         $user = $this->RechercherUtilisateur($IDuser,$request,$element);
-        $NomComplet = $user['NomComplet'];
-        return view('utilisateurs.representant', compact('representants', 'NomComplet', 'user', 'interlocuteurs'));
+        $nomComplet = $user['nomComplet'];
+        return view('utilisateurs.representant', compact('representants', 'nomComplet', 'user', 'interlocuteurs'));
     }
 
     private function ListeRepresentant($ID, Request $request, $element){

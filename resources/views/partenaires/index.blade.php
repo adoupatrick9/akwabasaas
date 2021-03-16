@@ -29,7 +29,7 @@
                     @foreach($elements as $partenaire)
                         <tr>
                         <td style="vertical-align: middle;">{{ $partenaire['ap_matricule_pers'] }}</td>
-                        <td style="vertical-align: middle;">{{ $partenaire['NomComplet'] }}</td>
+                        <td style="vertical-align: middle;">{{ $partenaire['nomComplet'] }}</td>
                         <td style="vertical-align: middle;">{{ $partenaire['ap_email_pers'] }}</td>
                         <td style="vertical-align: middle;">{{ $partenaire['ap_mobile_pers'] }}</td>
                         <td style="vertical-align: middle;" class="center">
@@ -45,12 +45,12 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/factures/'.$partenaire['ap_matricule_pers'].'/partenaire/'.$partenaire['IDas_personne']  ) }}">Factures</a></li>
-                                    <li><a href="{{ url('/utilisateurs-portefeuille/'.$partenaire['IDas_personne']).'/partenaire'  }}">Portefeuille</a></li>
-                                    <li><a href="{{ url('/utilisateurs-representant/'.$partenaire['IDas_personne']).'/partenaire'  }}">Représentants</a></li>
-                                    <li><a href="#" id="{{ $partenaire['IDas_personne'] }}" class="editer">Modifier</a></li>
-                                    <li><a href="{{ url('/utilisateurs-actif-inactif/'.$partenaire['IDas_personne']).'/partenaire'  }}">Activer/Désactiver</a></li>
-                                    <li><a href="#" id="{{ $partenaire['IDas_personne'] }}" class="supprimer">Supprimer</a></li>
+                                    <li><a href="{{ url('/factures/'.$partenaire['ap_matricule_pers'].'/partenaire/'.$partenaire['idas_personne']  ) }}">Factures</a></li>
+                                    <li><a href="{{ url('/utilisateurs-portefeuille/'.$partenaire['idas_personne']).'/partenaire'  }}">Portefeuille</a></li>
+                                    <li><a href="{{ url('/utilisateurs-representant/'.$partenaire['idas_personne']).'/partenaire'  }}">Représentants</a></li>
+                                    <li><a href="#" id="{{ $partenaire['idas_personne'] }}" class="editer">Modifier</a></li>
+                                    <li><a href="{{ url('/utilisateurs-actif-inactif/'.$partenaire['idas_personne']).'/partenaire'  }}">Activer/Désactiver</a></li>
+                                    <li><a href="#" id="{{ $partenaire['idas_personne'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>

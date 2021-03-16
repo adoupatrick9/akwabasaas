@@ -30,8 +30,8 @@
                     @foreach ($promotions as $promotion)
                         <tr>
                         <td style="vertical-align: middle;">{{ $promotion['pro_intitule'] }}</td>
-                        <td style="vertical-align: middle;">{{ $promotion['Sce_nom_service'] }}</td>
-                        <td style="vertical-align: middle;">{{ $promotion['Dev_intitule_devise'] }}</td>
+                        <td style="vertical-align: middle;">{{ $promotion['sce_nom_service'] }}</td>
+                        <td style="vertical-align: middle;">{{ $promotion['dev_intitule_devise'] }}</td>
                         <td style="vertical-align: middle;" class="hidden-phone">{{ $promotion['pro_cout_unitaire'] }}</td>
                         <td style="vertical-align: middle;" class="hidden-phone">{{ date("d-m-Y", strtotime($promotion['pro_debut_periode']))  }} -- {{ date("d-m-Y", strtotime($promotion['pro_fin_periode']))  }}</td>
                         <td style="vertical-align: middle;" class="center">
@@ -47,9 +47,9 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#" id="{{ $promotion['IDas_promotion'] }}" class="editer">Modifier</a></li>
-                                    <li><a href="{{ url('/promotions-actif-inactif/'.$promotion['IDas_promotion'] ) }}">Activer/Désactiver</a></li>
-                                    <li><a href="#" id="{{ $promotion['IDas_promotion'] }}" class="supprimer">Supprimer</a></li>
+                                    <li><a href="#" id="{{ $promotion['idas_promotion'] }}" class="editer">Modifier</a></li>
+                                    <li><a href="{{ url('/promotions-actif-inactif/'.$promotion['idas_promotion'] ) }}">Activer/Désactiver</a></li>
+                                    <li><a href="#" id="{{ $promotion['idas_promotion'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>

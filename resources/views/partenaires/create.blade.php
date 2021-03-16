@@ -62,7 +62,7 @@
                             <div class="col-md-6 form-group">
                                 Pays <span class="text-danger">*</span><select name="ap_pays_pers" id="ap_pays_pers" class="form-control">
                                     @foreach($pays as $pays)
-                                        <option value="{{ $pays['LeNomPays'] }}">{{ $pays['LeNomPays'] }}</option>
+                                        <option value="{{ $pays['leNomPays'] }}">{{ $pays['leNomPays'] }}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -34,7 +34,6 @@ $(document).ready(function() {
         var ap_adressegeo_pers = $('input[name="ap_adressegeo_pers"]').val();
         var matriculePartenaire = $('#matricule').val();
         var IDPartenaire = $('#IDPartenaire').val();
-
         if (ap_type_pers == "" || ap_nom_pers == "" ||
             ap_mobile_pers == "" || ap_email_pers == "" ||
             ap_login_pers == "" || ap_ville_pers == "" ||
@@ -73,7 +72,7 @@ $(document).ready(function() {
                 ap_ville_pers: ap_ville_pers,
                 ap_siteweb_pers: ap_siteweb_pers,
                 ap_adressepostale_pers: ap_adressepostale_pers,
-                ap_adressegeo_pers: ap_adressegeo_pers
+                ap_adressegeo_pers: ap_adressegeo_pers,
             },
             dataType: 'json',
             success: function(response) {
@@ -82,7 +81,7 @@ $(document).ready(function() {
                     return false;
                 }
                 alert("Le client a bien été ajouté au portefeuille.");
-                window.location.replace('utilisateurs-portefeuille/' + IDPartenaire + '/partenaire');
+                //window.location.replace("utilisateurs-portefeuille/" + IDPartenaire + "/partenaire");
             },
             error: function(response) {
                 console.log(response);

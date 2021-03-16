@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body row">
                     <div class="col-md-12 form-group">
-                        Devise <em class="text-danger">*</em><input type="text" name="Dev_intitule_devise" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('Dev_intitule_devise') }}">
+                        Devise <em class="text-danger">*</em><input type="text" name="dev_intitule_devise" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('dev_intitule_devise') }}">
                     </div>
                     <div class="col-md-12 container" id="msg"></div>
                 </div>

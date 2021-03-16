@@ -15,12 +15,12 @@
                             Interlocuteur disponible<span class="text-danger">*</span><select name="ap_matricule_pers" id="ap_matricule_pers" class="form-control">
                                 <option value="">Choisir ...</option>
                                 @foreach($interlocuteurs as $interlocuteur)
-                                    <option value="{{ $interlocuteur['ap_matricule_pers'] }}">{{ $interlocuteur['NomComplet'] }}</option>
+                                    <option value="{{ $interlocuteur['ap_matricule_pers'] }}">{{ $interlocuteur['nomComplet'] }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <input type="text" id="matricule" class="hidden" value="{{ $user['ap_matricule_pers'] }}">
-                        <input type="text" id="IDpartenaire" class="hidden" value="{{ $user['IDas_personne'] }}">
+                        <input type="text" id="IDpartenaire" class="hidden" value="{{ $user['idas_personne'] }}">
                         <div class="modal-footer col-md-12">
                             <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>
                             <button class="btn btn-theme" type="submit" id="submit">Enregistrer <i class="fa fa-save"></i></button>

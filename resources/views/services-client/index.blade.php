@@ -33,9 +33,9 @@
                   <tbody>
                     @foreach($ServicesClient as $ServicesClient)
                       <tr>
-                        <td style="vertical-align: middle;" class="text-uppercase">{{ $ServicesClient['Sce_nom_service'] }}</td>
+                        <td style="vertical-align: middle;" class="text-uppercase">{{ $ServicesClient['sce_nom_service'] }}</td>
                         <td style="vertical-align: middle;">
-                            @switch($ServicesClient['Sce_type_service'] )
+                            @switch($ServicesClient['sce_type_service'] )
                                 @case(1)
                                     Saas
                                     @break
@@ -58,8 +58,8 @@
                                         <span class="caret"></span>
                                         </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('/services-client-actif-inactif/'.$ServicesClient['IDas_service_client'].'/'.$IDclient)  }}">Activer/Désactiver</a></li>
-                                        <li><a href="{{ url('/services-client-delete/'.$ServicesClient['IDas_service_client'].'/'.$IDclient)  }}">Supprimer</a></li>
+                                        <li><a href="{{ url('/services-client-actif-inactif/'.$ServicesClient['idas_service_client'].'/'.$IDclient)  }}">Activer/Désactiver</a></li>
+                                        <li><a href="{{ url('/services-client-delete/'.$ServicesClient['idas_service_client'].'/'.$IDclient)  }}">Supprimer</a></li>
                                     </ul>
                                 </div>
                         </td>

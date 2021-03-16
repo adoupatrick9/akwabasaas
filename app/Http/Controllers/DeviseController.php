@@ -54,23 +54,23 @@ class DeviseController extends Controller
 
     private function Validation(Request $request){
         $request->validate([
-            "Dev_intitule_devise" => 'required',
+            "dev_intitule_devise" => 'required',
         ]);
     }
 
     private function Affectation(int $action, Request $request){
 
         $data = array();
-        $IDas_devise = 0;
+        $idas_devise = 0;
         if ($action == 2) {
-            $IDas_devise = Request('IDas_devise');
+            $idas_devise = Request('idas_devise');
         }
-        $data = $this->RechercherDevise($IDas_devise,$request);
+        $data = $this->RechercherDevise($idas_devise,$request);
 
         $data = [
-            "IDas_devise" => $IDas_devise,
-            "Dev_code_devise" => $data['Dev_code_devise'],
-            "Dev_intitule_devise" => Request('Dev_intitule_devise'),
+            "idas_devise" => $idas_devise,
+            "dev_code_devise" => $data['dev_code_devise'],
+            "dev_intitule_devise" => Request('dev_intitule_devise'),
             "Ajoute_le" => $data['Ajoute_le'],
             "Modifie_le" => $data['Modifie_le'],
             "Ajoute_par" => $data['Ajoute_par'],
@@ -87,7 +87,7 @@ class DeviseController extends Controller
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $loginA = $user['ap_login_pers'];
         $pwdA = $user['ap_pwd_pers'];
-        $IDas_devise = $data['IDas_devise'];
+        $idas_devise = $data['idas_devise'];
         $msg = "";
 
         /* $datas = json_encode($data);
@@ -108,7 +108,7 @@ class DeviseController extends Controller
 
         }else if ($action == 3) {
             //$urlSup = "api.pierisaas.net/akwabasaas/devise/3?login=ADMIN&pwd=ADMIN";
-            $urlSup = env('APP_URL_SAAS')."devise/$IDas_devise?login=$loginA&pwd=$pwdA";
+            $urlSup = env('APP_URL_SAAS')."devise/$idas_devise?login=$loginA&pwd=$pwdA";
             $response = Http::delete($urlSup, $data);
             $msg = "Devise supprimée";
 

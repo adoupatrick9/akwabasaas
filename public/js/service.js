@@ -64,10 +64,10 @@ $(document).ready(function() {
             url: "/services-edit/" + id + "/services",
             dataType: "json",
             success: function(data) {
-                $('#sce_nom_service').val(data.Sce_nom_service);
-                $('#sce_type option[value=' + data.Sce_type_service + ']').prop('selected', true);
+                $('#sce_nom_service').val(data.sce_nom_service);
+                $('#sce_type option[value=' + data.sce_type_service + ']').prop('selected', true);
                 $('#editService').attr('action', '/services-update/' + id);
-                $('#IDas_service').val(id);
+                $('#idas_service').val(id);
                 $('#myModalEditService').modal('show');
             },
             error: function(data) {
@@ -85,7 +85,7 @@ $(document).ready(function() {
             $('#sce_nom_service').focus();
             return false;
         }
-        var IDas_service = $('#IDas_service').val();
+        var idas_service = $('#idas_service').val();
         var MonUrl = $(this).attr('action');
         $.ajaxSetup({
             headers: {
@@ -102,7 +102,7 @@ $(document).ready(function() {
             type: "post",
             url: MonUrl,
             data: {
-                IDas_service: IDas_service,
+                idas_service: idas_service,
                 sce_nom_service: sce_nom_service,
                 sce_type: sce_type
             },

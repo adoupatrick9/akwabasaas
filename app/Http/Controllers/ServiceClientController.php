@@ -113,15 +113,15 @@ class ServiceClientController extends Controller
     private function Affectation(int $action, Request $request, $IDclient){
 
         $data = array();
-        $IDas_service_client = 0;
+        $idas_service_client = 0;
         if ($action == 2) {
-            $IDas_service_client = Request('IDas_service_client');
+            $idas_service_client = Request('idas_service_client');
         }
 
-        $data = $this->Rechercherserviceclient($IDas_service_client,$request);
+        $data = $this->Rechercherserviceclient($idas_service_client,$request);
 
         $data = [
-            "IDas_service_client" => $IDas_service_client,
+            "idas_service_client" => $idas_service_client,
             "Sc_numero_serviceclient" => $data['Sc_numero_serviceclient'],
             "sc_periodicite" => Request('sc_periodicite'),
             "sc_debut_service" => Request('sc_debut_service'),
@@ -139,8 +139,8 @@ class ServiceClientController extends Controller
             "ajoute_par" => $data['ajoute_par'],
             "modifie_par" => $data['modifie_par'],
             "date_heure_sys" => $data['date_heure_sys'],
-            "Sce_type_service" => $data['Sce_type_service'],
-            "Sce_nom_service" => $data['Sce_nom_service'] ,
+            "sce_type_service" => $data['sce_type_service'],
+            "sce_nom_service" => $data['sce_nom_service'] ,
             "ap_nom_pers" => $data['ap_nom_pers'] ,
             "ap_email_pers" => $data['ap_email_pers'] ,
             "ap_mobile_pers" => $data['ap_mobile_pers'] ,
@@ -162,7 +162,7 @@ class ServiceClientController extends Controller
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $loginA = $user['ap_login_pers'];
         $pwdA = $user['ap_pwd_pers'];
-        $IDserviceclient = $data['IDas_service_client'];
+        $IDserviceclient = $data['idas_service_client'];
         $msg = "";
 
         //dd($data);

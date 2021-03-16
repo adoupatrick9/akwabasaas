@@ -67,7 +67,7 @@ class PromotionController extends Controller
             "pro_debut_periode" => 'required',
             "pro_fin_periode" => 'required',
             "Sce_code_service" => 'required',
-            "Dev_code_devise" => 'required',
+            "dev_code_devise" => 'required',
             "pro_cout_mensuel" => 'required',
             "pro_cout_trimestriel" => 'required',
             "pro_cout_semestriel" => 'required',
@@ -79,19 +79,19 @@ class PromotionController extends Controller
 
 
         $data = array();
-        $IDas_promotion = 0;
+        $idas_promotion = 0;
         if ($action == 2) {
-            $IDas_promotion = Request('IDas_promotion');
+            $idas_promotion = Request('idas_promotion');
         }
 
-        $data = $this->RechercherPromotion($IDas_promotion,$request);
+        $data = $this->RechercherPromotion($idas_promotion,$request);
 
         $pro_intitule = Request('pro_intitule');
         $pro_cout_unitaire = Request('pro_cout_unitaire');
         $pro_debut_periode = Request('pro_debut_periode');
         $pro_fin_periode = Request('pro_fin_periode');
         $Sce_code_service = Request('Sce_code_service');
-        $Dev_code_devise = Request('Dev_code_devise');
+        $dev_code_devise = Request('dev_code_devise');
         $pro_cout_mensuel = Request('pro_cout_mensuel');
         $pro_cout_trimestriel = Request('pro_cout_trimestriel');
         $pro_cout_semestriel = Request('pro_cout_semestriel');
@@ -104,7 +104,7 @@ class PromotionController extends Controller
         $date_heure_sys = $data['date_heure_sys'];
 
         $data = [
-            "IDas_promotion" => $IDas_promotion,
+            "idas_promotion" => $idas_promotion,
             "pro_code_promo" => $pro_code_promo,
             "pro_intitule" => $pro_intitule,
             "pro_debut_periode" => $pro_debut_periode,
@@ -120,7 +120,7 @@ class PromotionController extends Controller
             "pro_cout_annuel" => $pro_cout_annuel,
             "pro_cout_unitaire" => $pro_cout_unitaire,
             "Sce_code_service" => $Sce_code_service,
-            "Dev_code_devise" => $Dev_code_devise,
+            "dev_code_devise" => $dev_code_devise,
 
         ];
 
@@ -133,7 +133,7 @@ class PromotionController extends Controller
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $loginA = $user['ap_login_pers'];
         $pwdA = $user['ap_pwd_pers'];
-        $IDas_promotion = $data['IDas_promotion'];
+        $idas_promotion = $data['idas_promotion'];
         $msg = "";
 
         //dd($loginA, $pwdA);
@@ -153,7 +153,7 @@ class PromotionController extends Controller
 
         }else if ($action == 3) {
             //$urlSup = "api.pierisaas.net/akwabasaas/promotion/3?login=ADMIN&pwd=ADMIN";
-            $urlSup = env('APP_URL_SAAS')."promotion/$IDas_promotion?login=$loginA&pwd=$pwdA";
+            $urlSup = env('APP_URL_SAAS')."promotion/$idas_promotion?login=$loginA&pwd=$pwdA";
             Http::delete($urlSup, $data);
             $msg = "La promotion a bien été supprimé.";
 

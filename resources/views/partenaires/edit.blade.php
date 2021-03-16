@@ -62,7 +62,7 @@
                             <div class="col-md-6 form-group">
                                 Pays <span class="text-danger">*</span><select name="ap_pays_pers" id="ap_pays" class="form-control">
                                     @foreach($pays as $pays)
-                                        <option value="{{ $pays['LeNomPays'] }}">{{ $pays['LeNomPays'] }}</option>
+                                        <option value="{{ $pays['leNomPays'] }}">{{ $pays['leNomPays'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="col-md-6 form-group">
                                 Adresse géographique<input type="text" name="ap_adressegeo_pers" id="ap_adressegeo_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_adressegeo_pers') }}">
                             </div>
-                            <input type="number" class="hidden" id="IDas_personne">
+                            <input type="number" class="hidden" id="idas_personne">
                             </form>
                         </div>
                         <div class="tabs__content">

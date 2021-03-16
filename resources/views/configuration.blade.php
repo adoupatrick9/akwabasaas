@@ -25,7 +25,7 @@
                     <tbody >
                         @foreach($devises as $devise)
                             <tr>
-                                <td class="text-uppercase">{{ $devise['Dev_intitule_devise'] }}</td>
+                                <td class="text-uppercase">{{ $devise['dev_intitule_devise'] }}</td>
                                 <td class="center">
                                     <!-- Split button -->
                                 <div class="btn-group">
@@ -34,8 +34,8 @@
                                         <span class="caret"></span>
                                         </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#" id="{{ $devise['IDas_devise'] }}" class="editer">Modifier</a></li>
-                                        <li><a href="#" id="{{ $devise['IDas_devise'] }}" class="supprimer">Supprimer</a></li>
+                                        <li><a href="#" id="{{ $devise['idas_devise'] }}" class="editer">Modifier</a></li>
+                                        <li><a href="#" id="{{ $devise['idas_devise'] }}" class="supprimer">Supprimer</a></li>
                                     </ul>
                                 </div>
                               </td>
