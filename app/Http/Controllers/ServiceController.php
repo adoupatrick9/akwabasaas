@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\CoutServiceController;
 use App\Http\Controllers\AuthentificationController;
 
 class ServiceController extends Controller
@@ -59,15 +60,12 @@ class ServiceController extends Controller
     }
 
     private function Affectation(int $action, Request $request){
-
         $data = array();
         $idas_service = 0;
         if ($action == 2) {
             $idas_service = Request('idas_service');
         }
-
         $data = $this->RechercherService($idas_service,$request);
-
         $sce_nom = Request('sce_nom_service');
         $sce_type = Request('sce_type');
         $Sce_code = $data['sce_code_service'];
@@ -77,8 +75,6 @@ class ServiceController extends Controller
         $modifie_par = $data['modifie_par'];
         $date_heure_sys = $data['date_heure_sys'];
         $Sce_modalitepaiement = $data['Sce_modalitepaiement'];
-
-        $data = array();
         $data = [
             "idas_service" => $idas_service,
             "sce_code_service" => $Sce_code,
@@ -91,7 +87,6 @@ class ServiceController extends Controller
             "date_heure_sys" => $date_heure_sys,
             "Sce_modalitepaiement" => $Sce_modalitepaiement,
         ];
-
         return $data;
     }
 
@@ -130,7 +125,7 @@ class ServiceController extends Controller
         return $msg;
     }
 
-    private function RechercherService($IDservice, Request $request){
+    public function RechercherService($IDservice, Request $request){
         $userAuth = new AuthentificationController();
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $loginA = $user['ap_login_pers'];
@@ -174,6 +169,14 @@ class ServiceController extends Controller
         $services = $serviceHTTP->json();
 
         return $services;
+    }
+
+    public function coutservice(Request $request, $ID){
+        $dev = new DeviseController(); $cout_serv = new CoutServiceController();
+        $coutServices = $cout_serv->ListeCoutServiceSelonIDService($request, $ID);
+        $service = $this->RechercherService($ID, $request);
+        $devises = $dev->Listing($request);
+        return view('couts-service.index', compact('coutServices', 'service', 'devises'));
     }
 
 }

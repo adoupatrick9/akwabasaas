@@ -19,6 +19,10 @@
                         <option value="2">One premise</option>
                     </select>
                 </div>
+                <div class="col-md-12 text-center text-success chargement">
+                    <br>
+                    <h6>Veuillez patienter un moment...</h6>
+                </div>
             </div>
             <div class="modal-footer">
               <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>

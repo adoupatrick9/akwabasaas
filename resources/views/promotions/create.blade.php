@@ -48,6 +48,10 @@
                 <div class="col-md-6 form-group">
                     Coût annuel <em class="text-danger">*</em><input type="number" name="pro_cout_annuel" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('pro_cout_annuel') }}">
                 </div>
+                <div class="col-md-12 text-center text-success chargement">
+                    <br>
+                    <h6>Veuillez patienter un moment...</h6>
+                </div>
             </div>
             <div class="modal-footer">
               <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>

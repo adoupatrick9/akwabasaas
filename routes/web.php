@@ -73,6 +73,7 @@ Route::middleware(['verif'])->group(function () {
     Route::post('/services-create', 'ServiceController@store');
     Route::get('/services-edit/{ID}/services', 'ServiceController@edit');
     Route::post('/services-update/{ID}', 'ServiceController@update');
+    Route::get('/services-coutservice/{ID}/services', 'ServiceController@coutservice');
     Route::get('/services-delete/{ID}', 'ServiceController@delete');
     Route::get('/services-actif-inactif/{ID}', 'ServiceController@actif');
 
@@ -83,6 +84,12 @@ Route::middleware(['verif'])->group(function () {
     Route::post('/services-client-update/{ID}/{IDclient}', 'ServiceClientController@update');
     Route::get('/services-client-delete/{ID}/{IDclient}', 'ServiceClientController@delete');
     Route::get('/services-client-actif-inactif/{ID}', 'ServiceClientController@actif');
+
+    //gestion des couts services
+    Route::post('/couts-service-create/{IDservice}', 'ServiceClientController@store');
+    Route::get('/couts-service-edit/{ID}', 'ServiceClientController@edit');
+    Route::post('/couts-service-update/{ID}/{IDservice}', 'ServiceClientController@update');
+    Route::get('/couts-service-delete/{ID}', 'ServiceClientController@delete');
 
     //gestion des promotions
     Route::get('/promotions', 'PromotionController@index');

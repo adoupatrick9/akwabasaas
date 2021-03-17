@@ -78,6 +78,10 @@
                                 <div class="col-md-6 form-group">
                                     Adresse géographique<input type="text" name="ap_adressegeo_pers" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('ap_adressegeo_pers') }}">
                                 </div>
+                                <div class="col-md-12 text-center text-success chargement">
+                                    <br>
+                                    <h6>Veuillez patienter un moment...</h6>
+                                </div>
                             </div>
                         </div>
                 </div>

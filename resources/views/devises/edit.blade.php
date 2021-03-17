@@ -14,6 +14,10 @@
                       Devise <em class="text-danger">*</em><input type="text" name="dev_intitule_devise" id="dev_intitule_devise" autocomplete="on" class="form-control placeholder-no-fix text-uppercase">
                   </div>
                   <div class="col-md-12 container" id="msg"></div>
+                  <div class="col-md-12 text-center text-success chargement">
+                    <br>
+                    <h6>Veuillez patienter un moment...</h6>
+                </div>
               </div>
               <input type="number" class="hidden" id="idas_devise">
               <div class="modal-footer">

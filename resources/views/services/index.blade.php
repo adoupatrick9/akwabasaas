@@ -50,6 +50,7 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/services-coutservice/'.$service['idas_service'].'/services') }}" id="{{ $service['idas_service'] }}">Coûts service</a></li>
                                     <li><a href="#" id="{{ $service['idas_service'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/services-actif-inactif/'.$service['idas_service']) }}">Activer/Désactiver</a></li>
                                     <li><a href="#" id="{{ $service['idas_service'] }}" class="supprimer">Supprimer</a></li>
