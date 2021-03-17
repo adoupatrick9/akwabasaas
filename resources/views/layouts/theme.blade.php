@@ -262,12 +262,12 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <li class="mt">
-            <a class="{{ $active_index }}" href="{{ url('/index') }}">
-              <i class="fa fa-dashboard"></i>
-              <span>Tableau de bord</span>
-              </a>
-          </li>
+            <li class="sub-menu">
+                <a class="{{ $active_index }}" href="{{ url('/index') }}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Tableau de bord</span>
+                    </a>
+              </li>
           <li class="sub-menu">
             <a class="{{ $active_utilisateur }}" href="{{ url('utilisateurs/utilisateur') }}">
               <i class="fa fa-users"></i>
@@ -282,7 +282,7 @@
           </li>
           <li class="sub-menu">
             <a class="{{ $active_client }}" href="{{ url('utilisateurs/client') }}">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-user-o"></i>
               <span>Clients</span>
               </a>
           </li>
@@ -394,6 +394,21 @@
       $("#date-popover").click(function(e) {
         $(this).hide();
       });
+
+      $("#my-calendar").zabuto_calendar({
+        action: function() {
+          return myDateFunction(this.id, false);
+        },
+        action_nav: function() {
+          return myNavFunction(this.id);
+        },
+        ajax: {
+          url: "show_data.php?action=1",
+          modal: true
+        },
+        legend: [
+        ]
+      });
     });
 
     function myNavFunction(id) {
@@ -402,7 +417,7 @@
       var to = $("#" + id).data("to");
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
-  </script>
+</script>
 
     @yield('js')
 
@@ -423,7 +438,7 @@
           });
 
         });
-      </script>
+    </script>
 </body>
 
 </html>

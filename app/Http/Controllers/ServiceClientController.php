@@ -10,17 +10,7 @@ use App\Http\Controllers\AuthentificationController;
 class ServiceClientController extends Controller
 {
     public function index(Request $request){
-        $userAuth = new AuthentificationController();
-        //akwabasaas/serviceclient
-        $user = $userAuth->RecuperationInfosUserConnecte($request);
-        $login = $user['Us_login'];
-        $pwd = $user['Us_mot_de_passe'];
-
-        $url = env('APP_URL_SAAS')."serviceclient?login=$login&pwd=$pwd";
-
-        $userHTTP = Http::get($url);
-        $users = $userHTTP->json();
-
+        $users = $this->ListeServicesClient($request);
         return view('serviceclients.index', compact('users'));
     }
 
@@ -221,5 +211,18 @@ class ServiceClientController extends Controller
         $msg = $this->EnregistrementModificationOuSuppression(2,$data,$request);
 
         return back()->with("message", "Le service à bien été marqué ".$choix);
+    }
+
+    public function ListeServicesClient(Request $request){
+        $userAuth = new AuthentificationController();
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $login = $user['ap_login_pers'];
+        $pwd = $user['ap_pwd_pers'];
+
+        $url = env('APP_URL_SAAS')."serviceclient?login=$login&pwd=$pwd";
+
+        $serviceClientHTTP = Http::get($url);
+        $serviceClients = $serviceClientHTTP->json();
+        return $serviceClients;
     }
 }

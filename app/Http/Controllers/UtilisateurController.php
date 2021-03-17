@@ -10,16 +10,9 @@ use App\Http\Controllers\AuthentificationController;
 class UtilisateurController extends Controller
 {
     public function index(Request $request, $element){
-        $userAuth = new AuthentificationController();
-        //akwabasaas/utilisateur
-        $user = $userAuth->RecuperationInfosUserConnecte($request);
-        $login = $user['ap_login_pers'];
-        $pwd = $user['ap_pwd_pers'];
-        $url = env('APP_URL_SAAS')."$element?login=$login&pwd=$pwd";
-        $vue = $element."s.index";
-        $elementHTTP = Http::get($url);
-        $elements = $elementHTTP->json();
+        $elements = $this->ListeUtilisateurSelonElement($request, $element);
         $pays = $this->ListePays($request);
+        $vue = $element."s.index";
         return view($vue, compact('elements', 'pays'));
     }
 
@@ -301,6 +294,21 @@ class UtilisateurController extends Controller
         $clients = $clientHTTP->json();
 
         return $clients;
+    }
+
+    public function ListeUtilisateurSelonElement(Request $request, String $element){
+        $userAuth = new AuthentificationController();
+        //akwabasaas/utilisateur
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $login = $user['ap_login_pers'];
+        $pwd = $user['ap_pwd_pers'];
+
+        $url = env('APP_URL_SAAS')."$element?login=$login&pwd=$pwd";
+
+        $elementtHTTP = Http::get($url);
+        $elementts = $elementtHTTP->json();
+
+        return $elementts;
     }
 
     public function portefeuilleCreate($ID, $matricule,  Request $request){

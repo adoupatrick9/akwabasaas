@@ -547,7 +547,7 @@ $.fn.zabuto_calendar_defaults = function () {
  */
 $.fn.zabuto_calendar_language = function (lang) {
     if (typeof(lang) == 'undefined' || lang === false) {
-        lang = 'en';
+        lang = 'fr';
     }
 
     switch (lang.toLowerCase()) {

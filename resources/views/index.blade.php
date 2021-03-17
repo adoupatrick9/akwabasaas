@@ -1,7 +1,6 @@
 @extends('layouts.theme')
 
 @section('content')
-
 <section class="wrapper">
     <div class="row">
       <div class="col-lg-9 main-chart">
@@ -353,56 +352,6 @@
             </p>
           </div>
         </div>
-        <!-- USERS ONLINE SECTION -->
-        <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
-        <!-- First Member -->
-        <div class="desc">
-          <div class="thumb">
-            <img class="img-circle" src="img/ui-divya.jpg" width="35px" height="35px" align="">
-          </div>
-          <div class="details">
-            <p>
-              <a href="#">DIVYA MANIAN</a><br/>
-              <muted>Available</muted>
-            </p>
-          </div>
-        </div>
-        <!-- Second Member -->
-        <div class="desc">
-          <div class="thumb">
-            <img class="img-circle" src="img/ui-sherman.jpg" width="35px" height="35px" align="">
-          </div>
-          <div class="details">
-            <p>
-              <a href="#">DJ SHERMAN</a><br/>
-              <muted>I am Busy</muted>
-            </p>
-          </div>
-        </div>
-        <!-- Third Member -->
-        <div class="desc">
-          <div class="thumb">
-            <img class="img-circle" src="img/ui-danro.jpg" width="35px" height="35px" align="">
-          </div>
-          <div class="details">
-            <p>
-              <a href="#">DAN ROGERS</a><br/>
-              <muted>Available</muted>
-            </p>
-          </div>
-        </div>
-        <!-- Fourth Member -->
-        <div class="desc">
-          <div class="thumb">
-            <img class="img-circle" src="img/ui-zac.jpg" width="35px" height="35px" align="">
-          </div>
-          <div class="details">
-            <p>
-              <a href="#">Zac Sniders</a><br/>
-              <muted>Available</muted>
-            </p>
-          </div>
-        </div>
         <!-- CALENDAR-->
         <div id="calendar" class="mb">
           <div class="panel green-panel no-margin">
@@ -424,3 +373,4 @@
   </section>
 
 @endsection
+
