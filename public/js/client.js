@@ -97,7 +97,7 @@ $(document).ready(function() {
         });
     });
 
-    //Modifier une service
+    //Modifier un client
     $('.editer').click(function() {
         var id = $(this).attr('id');
         $.ajaxSetup({

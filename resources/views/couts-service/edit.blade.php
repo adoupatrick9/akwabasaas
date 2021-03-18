@@ -14,14 +14,14 @@
                    Intitulé <em class="text-danger">*</em><input type="text" name="cs_intitule" id="cs_intitule" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_intitule') }}">
                 </div>
                 <div class="col-md-6 form-group">
-                    Devise <em class="text-danger">*</em><select name="dev_code_devise" id="dev_code_devise" class="form-control placeholder-no-fix">
+                    Devise <em class="text-danger">*</em><select name="dev_code_devise" id="dev_code" class="form-control placeholder-no-fix">
                         @foreach($devises as $devise)
                         <option value="{{ $devise['dev_code_devise'] }}">{{ $devise['dev_intitule_devise'] }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 form-group">
-                    Type service<em class="text-danger">*</em><select name="cs_type_service" id="cs_type_service" class="form-control placeholder-no-fix">
+                    Type service<em class="text-danger">*</em><select name="cs_type_service" id="cs_type" class="form-control placeholder-no-fix">
                         <option value="1">Saas</option>
                         <option value="2">One premise</option>
                     </select>

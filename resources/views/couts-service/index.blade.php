@@ -3,7 +3,7 @@
 @section('content')
 <section class="wrapper mt">
     <h3>
-        <i class="fa fa-angle-right"></i> Les répresentants de <span class="text-uppercase">{{ $service['Sce_nom_service'] }}</span>
+        <i class="fa fa-angle-right"></i> Coût du service <span class="text-uppercase">{{ $service['Sce_nom_service'] }}</span>
         <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>

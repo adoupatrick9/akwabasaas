@@ -81,7 +81,7 @@ $(document).ready(function() {
                     return false;
                 }
                 alert("Le client a bien été ajouté au portefeuille.");
-                //window.location.replace("utilisateurs-portefeuille/" + IDPartenaire + "/partenaire");
+                window.location.replace("utilisateurs-portefeuille/" + IDPartenaire + "/partenaire");
             },
             error: function(response) {
                 console.log(response);
