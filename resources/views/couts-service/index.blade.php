@@ -44,9 +44,9 @@
                             @endswitch
                         </td>
                         <td style="vertical-align: middle;">{{ $coutService['dev_code_devise'] }}</td>
-                        <td style="vertical-align: middle;">{{ $coutService['cs_cout_borne'] }}</td>
-                        <td style="vertical-align: middle;">{{ $coutService['cs_borne_inferieure'] }}</td>
-                        <td style="vertical-align: middle;">{{ $coutService['cs_borne_superieure'] }}</td>
+                        <td style="vertical-align: middle;">{{ number_format($coutService['cs_cout_borne'], 2, ',', ' ') }}</td>
+                        <td style="vertical-align: middle;">{{ number_format($coutService['cs_borne_inferieure'], 2, ',', ' ') }}</td>
+                        <td style="vertical-align: middle;">{{ number_format($coutService['cs_borne_superieure'], 2, ',', ' ') }}</td>
                         <td class="center">
                                 <!-- Split button -->
                             <div class="btn-group">

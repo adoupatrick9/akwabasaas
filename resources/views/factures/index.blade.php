@@ -23,7 +23,7 @@
                     @foreach($factures as $facture)
                       <tr>
                         <td style="vertical-align: middle;">{{ $facture['Numero_facture'] }}</td>
-                        <td style="vertical-align: middle;">{{ $facture['Fac_montant'] }}</td>
+                        <td style="vertical-align: middle;">{{ number_format($facture['Fac_montant'], 2, ',', ' ') }}</td>
                         <td style="vertical-align: middle;" class="center">
                             @if($facture['Fac_paye'] == true)
                                 <img src="{{ asset('img/ok.png') }}" alt="ok" width="25" height="25">
@@ -39,7 +39,7 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/facture-voir/'.$facture['IDas_facture']) }}">Voir</a></li>
+                                    <li><a href="{{ url('/factures-details/'.$facture['Numero_facture'].'/factures') }}">Détails</a></li>
                                 </ul>
                             </div>
                         </td>

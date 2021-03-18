@@ -29,13 +29,13 @@
                         <td style="vertical-align: middle;">{{ $service['Sce_nom_service'] }}</td>
                         <td style="vertical-align: middle;">
                             @switch($service['Sce_type_service'] )
-                            @case(1)
-                                Saas
-                                @break
-                            @case(2)
-                                One premise
-                                @break
-                        @endswitch
+                                @case(1)
+                                    Saas
+                                    @break
+                                @case(2)
+                                    One premise
+                                    @break
+                            @endswitch
                         </td>
                         <td style="vertical-align: middle;" class="center">
                             @if($service['sce_inactif'] == true)

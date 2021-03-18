@@ -27,28 +27,28 @@
                     </select>
                 </div>
                 <div class="col-md-6 form-group">
-                   Fréquence<em class="text-danger">*</em><input type="number" name="cs_frequence" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_frequence') }}">
+                   Fréquence<em class="text-danger">*</em><input type="number" name="cs_frequence" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('cs_frequence') }}">
                 </div>
                 <div class="col-md-6 form-group">
-                   Coût borne <em class="text-danger">*</em><input type="number" name="cs_cout_borne" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_cout_borne') }}">
+                   Coût borne <em class="text-danger">*</em><input type="number" name="cs_cout_borne" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('cs_cout_borne') }}">
                 </div>
                 <div class="col-md-6 form-group">
-                    Borne inférieur<em class="text-danger">*</em><input type="number" name="cs_borne_inferieure" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_borne_inferieure') }}">
+                    Borne inférieur<em class="text-danger">*</em><input type="number" name="cs_borne_inferieure" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('cs_borne_inferieure') }}">
                 </div>
                 <div class="col-md-6 form-group">
-                    Borne supérieur<em class="text-danger">*</em><input type="number" name="cs_borne_superieure" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_borne_superieure') }}">
+                    Borne supérieur<em class="text-danger">*</em><input type="number" name="cs_borne_superieure" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('cs_borne_superieure') }}">
                 </div>
                 <div class="col-md-6 form-group">
-                   Coût mensuel <em class="text-danger">*</em><input type="number" name="cs_cout_mensuel" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_cout_mensuel') }}">
+                   Coût mensuel <em class="text-danger">*</em><input type="number" name="cs_cout_mensuel" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('cs_cout_mensuel') }}">
                 </div>
                 <div class="col-md-6 form-group">
-                   Coût trimestriel <em class="text-danger">*</em><input type="number" name="cs_cout_trimestriel" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_cout_trimestriel') }}">
+                   Coût trimestriel <em class="text-danger">*</em><input type="number" name="cs_cout_trimestriel" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('cs_cout_trimestriel') }}">
                 </div>
                 <div class="col-md-6 form-group">
-                   Coût semestriel <em class="text-danger">*</em><input type="number" name="cs_cout_semestriel" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_cout_semestriel') }}">
+                   Coût semestriel <em class="text-danger">*</em><input type="number" name="cs_cout_semestriel" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('cs_cout_semestriel') }}">
                 </div>
                 <div class="col-md-6 form-group">
-                   Coût annuel <em class="text-danger">*</em><input type="number" name="cs_cout_annuel" autocomplete="on" class="form-control placeholder-no-fix text-uppercase" value="{{ old('cs_cout_annuel') }}">
+                   Coût annuel <em class="text-danger">*</em><input type="number" name="cs_cout_annuel" autocomplete="on" class="form-control placeholder-no-fix" value="{{ old('cs_cout_annuel') }}">
                 </div>
                 <div class="col-md-12 text-center text-success chargement">
                     <br>

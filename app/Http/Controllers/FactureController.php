@@ -35,19 +35,31 @@ class FactureController extends Controller
 
         return $factures;
     }
-    
+
     private function ListeFacture(Request $request){
         $userAuth = new AuthentificationController();
-        //akwabasaas/utilisateur
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $login = $user['ap_login_pers'];
         $pwd = $user['ap_pwd_pers'];
-
         $url = env('APP_URL_SAAS')."facture?login=$login&pwd=$pwd";
-
         $factureHTTP = Http::get($url);
         $factures = $factureHTTP->json();
-
         return $factures;
+    }
+
+    public function detailsFacture(Request $request, $numero){
+        $detailsFactures = $this->ListeDetailsFactureSelonNumeroFacture($numero, $request);
+        return view('factures.details', compact('detailsFactures'));
+    }
+
+    private function ListeDetailsFactureSelonNumeroFacture($numero, Request $request){
+        $userAuth = new AuthentificationController();
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $login = $user['ap_login_pers'];
+        $pwd = $user['ap_pwd_pers'];
+        $url = env('APP_URL_SAAS')."detailfacture/liste/$numero?login=$login&pwd=$pwd";
+        $detailsFactureHTTP = Http::get($url);
+        $detailsFactures = $detailsFactureHTTP->json();
+        return $detailsFactures;
     }
 }

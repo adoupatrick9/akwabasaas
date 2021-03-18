@@ -429,17 +429,42 @@ class UtilisateurController extends Controller
 
     private function RechercherPortefeuilleSelonID($ID, Request $request){
         $userAuth = new AuthentificationController();
-        //akwabasaas/utilisateur
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $login = $user['ap_login_pers'];
         $pwd = $user['ap_pwd_pers'];
-
         $urlSup = env('APP_URL_SAAS')."/portefeuille/$ID?login=$login&pwd=$pwd";
         $response = Http::get($urlSup);
-
         $Portefeuille = $response->json();
-
         return $Portefeuille;
+    }
+
+    public function soldeMouvementClientOuPartenaire($ID, $element, Request $request){
+        $utilisateur = $this->RechercherUtilisateur($ID,$request,$element);
+        $compte = $this->CompteSelonMatricule($request, $utilisateur['ap_matricule_pers']);
+        $mouvements = $this->MouvementCompteSelonNumeroCompte($request, $compte['numero_compte']);
+        return view('utilisateurs.solde-mouvement', compact('utilisateur', 'compte', 'mouvements'));
+    }
+
+    private function CompteSelonMatricule(Request $request, $matricule){
+        $userAuth = new AuthentificationController();
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $login = $user['ap_login_pers'];
+        $pwd = $user['ap_pwd_pers'];
+        $urlSup = env('APP_URL_SAAS')."compte/$matricule?login=$login&pwd=$pwd";
+        $response = Http::get($urlSup);
+        $compte = $response->json();
+        return $compte;
+    }
+
+    private function MouvementCompteSelonNumeroCompte(Request $request, $numcompte){
+        $userAuth = new AuthentificationController();
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $login = $user['ap_login_pers'];
+        $pwd = $user['ap_pwd_pers'];
+        $urlSup = env('APP_URL_SAAS')."comptemouvement/compte/$numcompte?login=$login&pwd=$pwd";
+        $response = Http::get($urlSup);
+        $mouvements = $response->json();
+        return $mouvements;
     }
 
 }

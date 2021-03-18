@@ -68,6 +68,9 @@ Route::middleware(['verif'])->group(function () {
     Route::post('/utilisateurs-marquer-interlocuteur-representant/{matricule}', 'UtilisateurController@marquerInterlocuteurRepresentant');
     Route::get('/utilisateurs-partenaire-portefeuille-retirer/{ID}', 'UtilisateurController@portefeuilleRetirer');
 
+    // Voir solde ou mouvements liés au compte du client ou du partenaire dont l'ID est passé en paramètre
+    Route::get('/solde-mvt-compte/{ID}/{element}', 'UtilisateurController@soldeMouvementClientOuPartenaire');
+
     //gestion des services
     Route::get('/services', 'ServiceController@index');
     Route::post('/services-create', 'ServiceController@store');
@@ -102,5 +105,6 @@ Route::middleware(['verif'])->group(function () {
     //gestion des factures Aucun enregistrement
     Route::get('/factures', 'FactureController@index');
     Route::get('/factures/{matricule}/{element}/{ID}', 'FactureController@indexElement'); // element = partenaire ou client
+    Route::get('/factures-details/{numero}/factures', 'FactureController@detailsFacture');
 
 });

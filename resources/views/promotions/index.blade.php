@@ -32,7 +32,7 @@
                         <td style="vertical-align: middle;">{{ $promotion['pro_intitule'] }}</td>
                         <td style="vertical-align: middle;">{{ $promotion['sce_nom_service'] }}</td>
                         <td style="vertical-align: middle;">{{ $promotion['dev_intitule_devise'] }}</td>
-                        <td style="vertical-align: middle;" class="hidden-phone">{{ $promotion['pro_cout_unitaire'] }}</td>
+                        <td style="vertical-align: middle;" class="hidden-phone">{{ number_format($promotion['pro_cout_unitaire'], 2, ',', ' ') }}</td>
                         <td style="vertical-align: middle;" class="hidden-phone">{{ date("d-m-Y", strtotime($promotion['pro_debut_periode']))  }} -- {{ date("d-m-Y", strtotime($promotion['pro_fin_periode']))  }}</td>
                         <td style="vertical-align: middle;" class="center">
                             @if($promotion['pro_inactif'] == true)
