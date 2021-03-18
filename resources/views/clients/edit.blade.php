@@ -89,7 +89,7 @@
                         </div>
                         <div class="modal-footer col-md-12">
                             <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>
-                            <button class="btn btn-theme" type="submit" id="submit">Modifier <i class="fa fa-edit"></i></button>
+                            <button class="btn btn-theme" type="submit">Modifier <i class="fa fa-edit"></i></button>
                         </div>
                     </div>
                 </div>

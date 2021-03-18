@@ -50,16 +50,17 @@ $(document).ready(function() {
                 cs_cout_mensuel: cs_cout_mensuel,
                 cs_cout_trimestriel: cs_cout_trimestriel,
                 cs_cout_semestriel: cs_cout_semestriel,
-                cs_cout_annuel: cs_cout_annuel
+                cs_cout_annuel: cs_cout_annuel,
             },
             dataType: 'json',
             success: function(response) {
+                //console.log(response);
                 if (response.status == 302) {
                     alert("Le coût service n'a pas pu être ajouté.");
                     return false;
                 }
                 alert("Le coût service a bien été ajouté.");
-                window.location.replace("services-coutservice/" + idas_service + "/services");
+                window.location.replace('services-coutservice/' + idas_service + '/service');
             },
             error: function(response) {
                 console.log(response);
@@ -84,8 +85,8 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 $('#cs_intitule').val(data.cs_intitule);
-                $('#dev_code option[value="' + data.ap_type_pers + '"]').prop('selected', true);
-                $('#cs_type option[value="' + data.ap_genre_pers + '"]').prop('selected', true);
+                $('#dev_code option[value="' + data.dev_code_devise + '"]').prop('selected', true);
+                $('#cs_type option[value="' + data.cs_type_service + '"]').prop('selected', true);
                 $('#cs_frequence').val(data.cs_frequence);
                 $('#cs_cout_borne').val(data.cs_cout_borne);
                 $('#cs_borne_inferieure').val(data.cs_borne_inferieure);
@@ -96,9 +97,6 @@ $(document).ready(function() {
                 $('#cs_cout_annuel').val(data.cs_cout_annuel);
                 var idas_service = $('#idas_service').val();
                 $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': _token,
-                    },
                     beforeSend: function() {
                         $('.chargement').show();
                     },
@@ -106,6 +104,7 @@ $(document).ready(function() {
                         $('.chargement').hide();
                     },
                 });
+                $('#idas_cout_service').val(id);
                 $('#editCoutService').attr('action', '/couts-service-update/' + id + '/' + idas_service);
                 $('#myModalEditCoutService').modal('show');
             },
@@ -129,6 +128,7 @@ $(document).ready(function() {
         var cs_cout_semestriel = $('#cs_cout_semestriel').val();
         var cs_cout_annuel = $('#cs_cout_annuel').val();
         var idas_service = $('#idas_service').val();
+        var idas_cout_service = $('#idas_cout_service').val();
         if (cs_intitule == "" || dev_code_devise == "" || cs_cout_mensuel == "" || cs_cout_trimestriel == "" ||
             cs_type_service == "" || cs_frequence == "" || cs_cout_semestriel == "" || cs_cout_annuel == "" ||
             cs_cout_borne == "" || cs_borne_inferieure == "" ||

@@ -88,7 +88,7 @@
             </div>
             <div class="modal-footer">
                 <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>
-                <button class="btn btn-theme" type="submit" id="submit">Enregistrer <i class="fa fa-save"></i></button>
+                <button class="btn btn-theme" type="submit">Enregistrer <i class="fa fa-save"></i></button>
             </div>
           </form>
           </div>

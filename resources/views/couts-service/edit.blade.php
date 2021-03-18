@@ -56,6 +56,7 @@
                 </div>
             </div>
             <input type="number" name="idas_service" id="idas_service" class="hidden" value="{{ $service['idas_service'] }}">
+            <input type="number" name="idas_cout_service" id="idas_cout_service" class="hidden">
             <div class="modal-footer">
               <button data-dismiss="modal" class="btn btn-default" type="button">Annuler <i class="fa fa-ban"></i></button>
               <button class="btn btn-theme" type="submit">Modifier <i class="fa fa-edit"></i></button>

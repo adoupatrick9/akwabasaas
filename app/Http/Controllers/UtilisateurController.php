@@ -313,12 +313,11 @@ class UtilisateurController extends Controller
 
     public function portefeuilleCreate($ID, $matricule,  Request $request){
         $userAuth = new AuthentificationController();
-        //akwabasaas/utilisateur
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $login = $user['ap_login_pers'];
         $pwd = $user['ap_pwd_pers'];
         $this->Validation($request);
-        $data = $this->Affectation(1, $request, 'client', $matricule); // affectation enregistrement
+        $data = $this->Affectation(1, $request, 'client', $matricule); // affectation
         $urlEnr = env('APP_URL_SAAS')."client?login=$login&pwd=$pwd";
         $response = Http::withHeaders([
             'X-Accept' => 'application/json',

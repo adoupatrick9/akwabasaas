@@ -3,7 +3,7 @@
 @section('content')
 <section class="wrapper mt">
     <h3>
-        <i class="fa fa-angle-right"></i> Coût du service <span class="text-uppercase">{{ $service['Sce_nom_service'] }}</span>
+        <i class="fa fa-angle-right"></i> Coûts du service <span class="text-uppercase">{{ $service['Sce_nom_service'] }}</span>
         <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>
@@ -21,23 +21,32 @@
                 <thead>
                   <tr>
                     <th>Intitulé</th>
+                    <th>Type service</th>
                     <th>Devise</th>
                     <th>Coût borne</th>
                     <th>Borne inférieur</th>
                     <th>Borne supérieur</th>
-                    <th>Coût mensuel</th>
-                    <th>Coût trimestriel</th>
-                    <th>Coût semestriel</th>
-                    <th>Coût annuel</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                     @foreach ($coutServices as $coutService)
                         <tr>
-                        <td style="vertical-align: middle;">{{ $coutService['Sce_nom_service'] }}</td>
-                        <td style="vertical-align: middle;"></td>
-                        <td style="vertical-align: middle;"></td>
+                        <td style="vertical-align: middle;">{{ $coutService['cs_intitule'] }}</td>
+                        <td style="vertical-align: middle;">
+                            @switch($coutService['cs_type_service'] )
+                                @case(1)
+                                    Saas
+                                    @break
+                                @case(2)
+                                    One premise
+                                    @break
+                            @endswitch
+                        </td>
+                        <td style="vertical-align: middle;">{{ $coutService['dev_code_devise'] }}</td>
+                        <td style="vertical-align: middle;">{{ $coutService['cs_cout_borne'] }}</td>
+                        <td style="vertical-align: middle;">{{ $coutService['cs_borne_inferieure'] }}</td>
+                        <td style="vertical-align: middle;">{{ $coutService['cs_borne_superieure'] }}</td>
                         <td class="center">
                                 <!-- Split button -->
                             <div class="btn-group">

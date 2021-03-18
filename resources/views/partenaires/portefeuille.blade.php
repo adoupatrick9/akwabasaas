@@ -4,7 +4,7 @@
 <section class="wrapper mt">
     <h3>
         <i class="fa fa-angle-right"></i> Portefeuille de <span class="text-uppercase">{{ $nomComplet }}</span>
-        <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
+        <a href="{{ url('/utilisateurs/partenaire') }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>
     <div class="col-md-12 text-center text-success chargeM">

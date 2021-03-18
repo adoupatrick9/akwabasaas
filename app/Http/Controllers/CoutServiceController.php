@@ -32,7 +32,10 @@ class CoutServiceController extends Controller
      */
     public function store(Request $request, $IDservice)
     {
-        $data = $this->Affectation(1, $request); // affectation modif
+        $serv = new ServiceController();
+        $service = $serv->RechercherService($IDservice,$request);
+        $codeService = $service['sce_code_service'];
+        $data = $this->Affectation(1, $request, $codeService); // affectation modif
         $dataStored = $this->EnregistrementModificationOuSuppression(1,$data,$request);
         return $dataStored;
     }
@@ -58,7 +61,10 @@ class CoutServiceController extends Controller
      */
     public function update(Request $request, $ID, $IDservice)
     {
-        $data = $this->Affectation(2, $request); // affectation modif
+        $serv = new ServiceController();
+        $service = $serv->RechercherService($IDservice,$request);
+        $codeService = $service['sce_code_service'];
+        $data = $this->Affectation(2, $request, $codeService); // affectation modif
         $dataUpdated = $this->EnregistrementModificationOuSuppression(2,$data,$request);
         return $dataUpdated;
     }
@@ -76,7 +82,7 @@ class CoutServiceController extends Controller
         return $datadeleted;
     }
 
-    private function Affectation(int $action, Request $request){
+    private function Affectation(int $action, Request $request, $codeService){
         $data = array();
         $idas_cout_service = 0;
         if ($action == 2) {
@@ -102,7 +108,7 @@ class CoutServiceController extends Controller
             "cs_frequence" => Request('cs_frequence'),
             "cs_intitule" => Request('cs_intitule'),
             "dev_code_devise" => Request('dev_code_devise'),
-            "sce_code_service" => Request('sce_code_service'),
+            "sce_code_service" => $codeService,
         ];
         return $data;
     }

@@ -76,6 +76,7 @@ $(document).ready(function() {
             },
             dataType: 'json',
             success: function(response) {
+                //console.log(response);
                 if (response.status == 302) {
                     alert("Le client n'a pas pu être ajouté au portefeuille");
                     return false;

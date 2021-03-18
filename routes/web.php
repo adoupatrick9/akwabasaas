@@ -86,10 +86,10 @@ Route::middleware(['verif'])->group(function () {
     Route::get('/services-client-actif-inactif/{ID}', 'ServiceClientController@actif');
 
     //gestion des couts services
-    Route::post('/couts-service-create/{IDservice}', 'ServiceClientController@store');
-    Route::get('/couts-service-edit/{ID}', 'ServiceClientController@edit');
-    Route::post('/couts-service-update/{ID}/{IDservice}', 'ServiceClientController@update');
-    Route::get('/couts-service-delete/{ID}', 'ServiceClientController@delete');
+    Route::post('/couts-service-create/{IDservice}', 'CoutServiceController@store');
+    Route::get('/couts-service-edit/{ID}', 'CoutServiceController@edit');
+    Route::post('/couts-service-update/{ID}/{IDservice}', 'CoutServiceController@update');
+    Route::get('/couts-service-delete/{ID}', 'CoutServiceController@delete');
 
     //gestion des promotions
     Route::get('/promotions', 'PromotionController@index');
