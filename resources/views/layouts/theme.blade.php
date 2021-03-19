@@ -342,9 +342,6 @@
 
   </section>
 
-  <div class="hidden" id="loginA">{{ session()->get('user.ap_login_pers') }}</div>
-  <div class="hidden" id="pwdA">{{ session()->get('user.ap_pwd_pers') }}</div>
-
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
