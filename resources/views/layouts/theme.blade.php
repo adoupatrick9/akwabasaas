@@ -259,55 +259,63 @@
         }
     ?>
     <aside>
+        <style>
+            .menu-probleme{
+                margin-left: 10px;
+            }
+            .trois-premier{
+                margin-left: -3px;
+            }
+        </style>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
             <li class="sub-menu">
                 <a class="{{ $active_index }}" href="{{ url('/index') }}">
-                    <i class="fa fa-dashboard"></i>
-                    <span>Tableau de bord</span>
-                    </a>
-              </li>
+                    <i class="fa fa-dashboard trois-premier"></i>
+                    <span class="menu-probleme">Tableau de bord</span>
+                </a>
+            </li>
           <li class="sub-menu">
             <a class="{{ $active_utilisateur }}" href="{{ url('utilisateurs/utilisateur') }}">
-              <i class="fa fa-users"></i>
-              <span>Utilisateurs</span>
+              <i class="fa fa-users trois-premier"></i>
+              <span class="menu-probleme">Utilisateurs</span>
               </a>
           </li>
           <li class="sub-menu">
             <a class="{{ $active_partenaire }}" href="{{ url('utilisateurs/partenaire') }}">
-              <i class="fa fa-handshake-o"></i>
-              <span>Partenaires</span>
+              <i class="fa fa-handshake-o trois-premier"></i>
+              <span style="margin-left: 8px;">Partenaires</span>
             </a>
           </li>
           <li class="sub-menu">
             <a class="{{ $active_client }}" href="{{ url('utilisateurs/client') }}">
               <i class="fa fa-user-o"></i>
-              <span>Clients</span>
+              <span style="margin-left: 12px;">Clients</span>
               </a>
           </li>
           <li class="sub-menu">
             <a class="{{ $active_facture }}" href="{{ url('/factures') }}">
               <i class="fa fa-list-alt"></i>
-              <span>Factures</span>
+              <span class="menu-probleme">Factures</span>
             </a>
           </li>
           <li class="sub-menu">
             <a class="{{ $active_promotion }}" href="{{ url('/promotions') }}">
               <i class="fa fa-bullhorn"></i>
-              <span>Promotions</span>
+              <span class="menu-probleme">Promotions</span>
             </a>
           </li>
           <li class="sub-menu">
             <a class="{{ $active_service }}" href="{{ url('/services') }}">
               <i class="fa fa-wrench"></i>
-              <span>Services</span>
+              <span style="margin-left: 12px;">Services</span>
             </a>
           </li>
           <li class="sub-menu">
             <a class="{{ $active_configuration }}" href="{{ url('/configurations') }}">
               <i class="fa fa-cogs"></i>
-              <span>Configurations</span>
+              <span class="menu-probleme">Configurations</span>
             </a>
           </li>
           <li class="sub-menu">
@@ -334,7 +342,8 @@
 
   </section>
 
-
+  <div class="hidden" id="loginA">{{ session()->get('user.ap_login_pers') }}</div>
+  <div class="hidden" id="pwdA">{{ session()->get('user.ap_pwd_pers') }}</div>
 
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>

@@ -73,6 +73,7 @@ $(document).ready(function() {
                 ap_siteweb_pers: ap_siteweb_pers,
                 ap_adressepostale_pers: ap_adressepostale_pers,
                 ap_adressegeo_pers: ap_adressegeo_pers,
+                matriculePartenaire: matriculePartenaire
             },
             dataType: 'json',
             success: function(response) {
@@ -82,7 +83,7 @@ $(document).ready(function() {
                     return false;
                 }
                 alert("Le client a bien été ajouté au portefeuille.");
-                window.location.replace("utilisateurs-portefeuille/" + IDPartenaire + "/partenaire");
+                window.location.replace("/utilisateurs-portefeuille/" + IDPartenaire + "/partenaire");
             },
             error: function(response) {
                 console.log(response);
@@ -103,7 +104,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 alert('Client retiré du portefeuille');
-                window.location.replace('utilisateurs-portefeuille/' + id + '/partenaire');
+                window.location.replace('/utilisateurs-portefeuille/' + id + '/partenaire');
             },
             error: function(data) {
                 console.log(data);
