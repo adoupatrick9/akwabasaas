@@ -2,7 +2,7 @@
   <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalEditDevise" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-          <form id="EditDevise" method="post" action="">
+          <form id="EditDevise" method="post" action="{{ url('/devises-update/') }}">
           @csrf
           @method('put')
               <div class="modal-header">

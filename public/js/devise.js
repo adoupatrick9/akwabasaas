@@ -11,6 +11,7 @@ $(document).ready(function() {
         e.preventDefault();
         var _token = $('input[name="_token"]').val();
         var intitule = $('input[name="dev_intitule_devise"]').val();
+        var urlEnr = $(this).attr('action');
         if (intitule == "") {
             alert('Le nom de la devise ne doit pas être vide.');
             $('input[name="dev_intitule_devise"]').focus();
@@ -29,7 +30,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: "/devises-create",
+            url: urlEnr,
             data: {
                 dev_intitule_devise: intitule
             },
@@ -40,7 +41,7 @@ $(document).ready(function() {
                     return false;
                 }
                 alert('La devise a bien été enregistré.');
-                window.location.replace("/configurations");
+                window.location.reload();
             },
             error: function(response) {
                 console.log(response);
@@ -49,8 +50,10 @@ $(document).ready(function() {
     });
 
     //Modifier une devise
-    $('.editer').click(function() {
+    $('.editer').click(function(e) {
+        e.preventDefault();
         var id = $(this).attr('id');
+        var urlEdit = $(this).attr('href');
         $.ajaxSetup({
             beforeSend: function() {
                 $('.chargeM').show();
@@ -61,11 +64,12 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "get",
-            url: "/devises-edit/" + id + "/configurations",
+            url: urlEdit,
             dataType: "json",
             success: function(data) {
                 $('#dev_intitule_devise').val(data.dev_intitule_devise);
-                $('#EditDevise').attr('action', '/devises-update/' + id);
+                var urlUpdate = $('#EditDevise').attr('action') + '/' + id;
+                $('#EditDevise').attr('action', urlUpdate);
                 $('#idas_devise').val(id);
                 $('#myModalEditDevise').modal('show');
             },
@@ -106,7 +110,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 alert('Devise mise à jour.');
-                window.location.replace("/configurations");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
@@ -115,20 +119,21 @@ $(document).ready(function() {
     });
 
     // Supprimer
-    $('.supprimer').click(function() {
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
         var rep = confirm("Voulez-vous supprimer cette devise ?");
         if (rep == false) {
             return false;
         }
-        var id = $(this).attr('id');
+        var urlSup = $(this).attr('href');
         var _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: "get",
-            url: "/devises-delete/" + id,
+            url: urlSup,
             dataType: "json",
             success: function(data) {
                 alert('Devise supprimée');
-                window.location.replace("/configurations");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);

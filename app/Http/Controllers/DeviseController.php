@@ -71,11 +71,11 @@ class DeviseController extends Controller
             "idas_devise" => $idas_devise,
             "dev_code_devise" => $data['dev_code_devise'],
             "dev_intitule_devise" => Request('dev_intitule_devise'),
-            "Ajoute_le" => $data['Ajoute_le'],
-            "Modifie_le" => $data['Modifie_le'],
-            "Ajoute_par" => $data['Ajoute_par'],
-            "Modifie_par" => $data['Modifie_par'],
-            "Date_heure_sys" => $data['Date_heure_sys'],
+            "ajoute_le" => $data['ajoute_le'],
+            "modifie_le" => $data['modifie_le'],
+            "ajoute_par" => $data['ajoute_par'],
+            "modifie_par" => $data['modifie_par'],
+            "date_heure_sys" => $data['date_heure_sys'],
         ];
 
         return $data;
