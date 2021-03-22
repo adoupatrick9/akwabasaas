@@ -122,16 +122,16 @@ $(document).ready(function() {
     });
 
     // Supprimer
-    $('.supprimer').click(function() {
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
         var rep = confirm("Voulez-vous supprimer ce service ?");
+        var urlSup = $(this).attr('href');
         if (rep == false) {
             return false;
         }
-        var id = $(this).attr('id');
-        var _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: "get",
-            url: "/services-delete/" + id,
+            url: urlSup,
             dataType: "json",
             success: function(data) {
                 alert('Service supprimée');

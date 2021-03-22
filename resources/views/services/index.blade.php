@@ -53,7 +53,7 @@
                                     <li><a href="{{ url('/services-coutservice/'.$service['idas_service'].'/services') }}" id="{{ $service['idas_service'] }}">Coûts service</a></li>
                                     <li><a href="{{ url('/services-edit/'.$service['idas_service'].'/services') }}" id="{{ $service['idas_service'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/services-actif-inactif/'.$service['idas_service']) }}">Activer/Désactiver</a></li>
-                                    <li><a href="#" id="{{ $service['idas_service'] }}" class="supprimer">Supprimer</a></li>
+                                    <li><a href="{{ url('/services-delete/'.$service['idas_service']) }}" id="{{ $service['idas_service'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>
