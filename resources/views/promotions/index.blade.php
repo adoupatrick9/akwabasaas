@@ -47,9 +47,9 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#" id="{{ $promotion['idas_promotion'] }}" class="editer">Modifier</a></li>
+                                    <li><a href="{{ url('/promotions-edit/'.$promotion['idas_promotion'].'/promotions') }}" id="{{ $promotion['idas_promotion'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/promotions-actif-inactif/'.$promotion['idas_promotion'] ) }}">Activer/Désactiver</a></li>
-                                    <li><a href="#" id="{{ $promotion['idas_promotion'] }}" class="supprimer">Supprimer</a></li>
+                                    <li><a href="{{ url('/promotions-delete/'.$promotion['idas_promotion'] ) }}" id="{{ $promotion['idas_promotion'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>

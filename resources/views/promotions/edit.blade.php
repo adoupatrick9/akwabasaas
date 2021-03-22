@@ -2,7 +2,7 @@
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalEditPromo" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
-          <form id="editPromo" method="post" action="">
+          <form id="editPromo" method="post" action="{{ url('/promotions-update/') }}">
              @csrf
              @method('put')
             <div class="modal-header">

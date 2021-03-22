@@ -17,6 +17,7 @@ $(document).ready(function() {
         var pro_cout_trimestriel = $('input[name="pro_cout_trimestriel"]').val();
         var pro_cout_semestriel = $('input[name="pro_cout_semestriel"]').val();
         var pro_cout_annuel = $('input[name="pro_cout_annuel"]').val();
+        var urlEnr = $(this).attr('action');
 
         if (pro_intitule == "" || Sce_code_service == "" ||
             dev_code_devise == "" || pro_debut_periode == "" ||
@@ -40,7 +41,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: "/promotions-create",
+            url: urlEnr,
             data: {
                 pro_intitule: pro_intitule,
                 Sce_code_service: Sce_code_service,
@@ -60,7 +61,7 @@ $(document).ready(function() {
                     return false;
                 }
                 alert('La promotion a bien été enregistré.');
-                window.location.replace("/promotions");
+                window.location.reload();
             },
             error: function(response) {
                 console.log(response);
@@ -69,8 +70,10 @@ $(document).ready(function() {
     });
 
     //Modifier une service
-    $('.editer').click(function() {
+    $('.editer').click(function(e) {
+        e.preventDefault();
         var id = $(this).attr('id');
+        var urlEdit = $(this).attr('href');
         $.ajaxSetup({
             beforeSend: function() {
                 $('.chargeM').show();
@@ -81,11 +84,11 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "get",
-            url: "/promotions-edit/" + id + "/promotions",
+            url: urlEdit,
             dataType: "json",
             success: function(data) {
                 $('#pro_intitule').val(data.pro_intitule);
-                $('#Sce_code option[value=' + data.Sce_code_service + ']').prop('selected', true);
+                $('#Sce_code option[value=' + data.sce_code_service + ']').prop('selected', true);
                 $('#Dev_code option[value=' + data.dev_code_devise + ']').prop('selected', true);
                 $('#pro_debut_periode').val(data.pro_debut_periode);
                 $('#pro_fin_periode').val(data.pro_fin_periode);
@@ -94,7 +97,8 @@ $(document).ready(function() {
                 $('#pro_cout_trimestriel').val(data.pro_cout_trimestriel);
                 $('#pro_cout_semestriel').val(data.pro_cout_semestriel);
                 $('#pro_cout_annuel').val(data.pro_cout_annuel);
-                $('#editPromo').attr('action', '/promotions-update/' + id);
+                var urlUpdate = $('#editPromo').attr('action') + '/' + id;
+                $('#editPromo').attr('action', urlUpdate);
                 $('#idas_promotion').val(id);
                 $('#myModalEditPromo').modal('show');
             },
@@ -158,7 +162,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 alert('service mis à jour.');
-                window.location.replace("/promotions");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
@@ -167,19 +171,20 @@ $(document).ready(function() {
     });
 
     // Supprimer
-    $('.supprimer').click(function() {
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
         var rep = confirm("Voulez-vous supprimer cette promotion ?");
         if (rep == false) {
             return false;
         }
-        var id = $(this).attr('id');
+        var urlSup = $(this).attr('href');
         $.ajax({
             type: "get",
-            url: "/promotions-delete/" + id,
+            url: urlSup,
             dataType: "json",
             success: function(data) {
                 alert('Promotion supprimée');
-                window.location.replace("/promotions");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
