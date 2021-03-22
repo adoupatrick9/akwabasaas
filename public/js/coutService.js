@@ -18,6 +18,7 @@ $(document).ready(function() {
         var cs_cout_semestriel = $('input[name="cs_cout_semestriel"]').val();
         var cs_cout_annuel = $('input[name="cs_cout_annuel"]').val();
         var idas_service = $('input[name="idas_service"]').val();
+        var urlEnr = $(this).attr('action');
         if (cs_intitule == "" || dev_code_devise == "" || cs_cout_mensuel == "" || cs_cout_trimestriel == "" ||
             cs_type_service == "" || cs_frequence == "" || cs_cout_semestriel == "" || cs_cout_annuel == "" ||
             cs_cout_borne == "" || cs_borne_inferieure == "" ||
@@ -38,7 +39,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: "/couts-service-create/" + idas_service,
+            url: urlEnr,
             data: {
                 cs_intitule: cs_intitule,
                 dev_code_devise: dev_code_devise,
@@ -54,13 +55,12 @@ $(document).ready(function() {
             },
             dataType: 'json',
             success: function(response) {
-                //console.log(response);
                 if (response.status == 302) {
                     alert("Le coût service n'a pas pu être ajouté.");
                     return false;
                 }
                 alert("Le coût service a bien été ajouté.");
-                window.location.replace('services-coutservice/' + idas_service + '/service');
+                window.location.reload();
             },
             error: function(response) {
                 console.log(response);
@@ -69,8 +69,10 @@ $(document).ready(function() {
     });
 
     //Modifier un coût service
-    $('.editer').click(function() {
+    $('.editer').click(function(e) {
+        e.preventDefault();
         var id = $(this).attr('id');
+        var urlEdit = $(this).attr('href');
         $.ajaxSetup({
             beforeSend: function() {
                 $('.chargeM').show();
@@ -81,7 +83,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "get",
-            url: "/couts-service-edit/" + id,
+            url: urlEdit,
             dataType: "json",
             success: function(data) {
                 $('#cs_intitule').val(data.cs_intitule);
@@ -105,7 +107,8 @@ $(document).ready(function() {
                     },
                 });
                 $('#idas_cout_service').val(id);
-                $('#editCoutService').attr('action', '/couts-service-update/' + id + '/' + idas_service);
+                var urlUpdate = $('#editCoutService').attr('action') + '/' + id + '/' + idas_service;
+                $('#editCoutService').attr('action', urlUpdate);
                 $('#myModalEditCoutService').modal('show');
             },
             error: function(data) {
@@ -168,7 +171,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 alert('Coût service mis à jour.');
-                window.location.replace("services-coutservice/" + idas_service + "/services");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
@@ -177,19 +180,20 @@ $(document).ready(function() {
     });
 
     // Supprimer
-    $('.supprimer').click(function() {
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
         var rep = confirm("Voulez-vous retirer ce coût service ?");
         if (rep == false) {
             return false;
         }
-        var id = $(this).attr('id');
+        var urlSup = $(this).attr('href');
         $.ajax({
             type: "get",
-            url: "/couts-service-delete/" + id,
+            url: urlSup,
             dataType: "json",
             success: function(data) {
                 alert('Coût service retiré');
-                window.location.replace("services-coutservice/" + id + "/services");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);

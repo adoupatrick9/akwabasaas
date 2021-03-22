@@ -55,8 +55,8 @@
                                     <span class="caret"></span>
                                     </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#" id="{{ $coutService['idas_cout_service'] }}" class="editer">Modifier</a></li>
-                                    <li><a href="#" id="{{ $coutService['idas_cout_service'] }}" class="supprimer">Supprimer</a></li>
+                                    <li><a href="{{ url('/couts-service-edit/'.$coutService['idas_cout_service']) }}" id="{{ $coutService['idas_cout_service'] }}" class="editer">Modifier</a></li>
+                                    <li><a href="{{ url('/couts-service-delete/'.$coutService['idas_cout_service']) }}" id="{{ $coutService['idas_cout_service'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>

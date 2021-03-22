@@ -3,7 +3,7 @@
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalStoreCoutService" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
-          <form id="addCoutService">
+          <form id="addCoutService" action="{{ url('/couts-service-create/'.$service['idas_service']) }}">
           @csrf
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
