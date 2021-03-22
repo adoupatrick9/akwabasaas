@@ -161,7 +161,7 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                alert('service mis à jour.');
+                alert('Promotion mis à jour.');
                 window.location.reload();
             },
             error: function(data) {

@@ -90,7 +90,7 @@ $(document).ready(function() {
                     return false;
                 }
                 alert("Le client a bien été enregistré.");
-                window.location.replace("/utilisateurs/client");
+                window.location.reload();
             },
             error: function(response) {
                 console.log(response);
