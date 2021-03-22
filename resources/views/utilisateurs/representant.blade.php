@@ -25,6 +25,7 @@
                         <th>Nom complet</th>
                         <th>Mobile</th>
                         <th>Email</th>
+                        <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -33,6 +34,7 @@
                         <td class="text-uppercase">{{ $representant['ap_nom_pers'] }}</td>
                         <td>{{ $representant['ap_mobile_pers'] }}</td>
                         <td>{{ $representant['ap_email_pers'] }}</td>
+                        <td><a href="" class="supprimer btn btn-danger">Supprimer</a></td>
                       </tr>
                     @endforeach
 

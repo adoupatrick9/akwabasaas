@@ -24,6 +24,7 @@ $(document).ready(function() {
         var ap_adressegeo_pers = $('input[name="ap_adressegeo_pers"]').val();
         var matricule = $('#matricule').val();
         var IDpartenaire = $('#IDpartenaire').val();
+        var urlEnr = $(this).attr('action');
 
         if (ap_nom_pers == "" ||
             ap_mobile_pers == "" || ap_email_pers == "" ||
@@ -45,7 +46,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: "/utilisateurs-marquer-interlocuteur-representant/" + matricule,
+            url: urlEnr,
             data: {
                 ap_nom_pers: ap_nom_pers,
                 ap_prenom_pers: ap_prenom_pers,
@@ -73,12 +74,35 @@ $(document).ready(function() {
                     return false;
                 }
                 alert("Le représentant a bien été enregistré.");
-                window.location.replace('/utilisateurs-representant/' + IDpartenaire + '/partenaire');
+                window.location.reload();
             },
             error: function(response) {
                 console.log(response);
             }
         });
+    });
+
+    // Supprimer
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
+        var rep = confirm("Voulez-vous supprimer ce représentant ?");
+        var urlSup = $(this).attr('href');
+        if (rep == false) {
+            return false;
+        }
+        $.ajax({
+            type: "get",
+            url: urlSup,
+            dataType: "json",
+            success: function(data) {
+                alert('Représentant supprimée');
+                window.location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
     });
 
 });

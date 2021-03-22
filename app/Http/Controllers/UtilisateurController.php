@@ -336,6 +336,31 @@ class UtilisateurController extends Controller
         return view('utilisateurs.representant', compact('representants', 'user', 'pays'));
     }
 
+    public function representantDelete($ID, Request $request){
+        $representant = $this->RepresentantSelonID($ID, $request);
+        $userAuth = new AuthentificationController();
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $loginA = $user['ap_login_pers'];
+        $pwdA = $user['ap_pwd_pers'];
+        $urlSup = env('APP_URL_SAAS')."$?login=$loginA&pwd=$pwdA";
+        $response = Http::delete($urlSup, $representant);
+        return $response->json();
+    }
+
+    private function RepresentantSelonID($ID, Request $request){
+        $userAuth = new AuthentificationController();
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $loginA = $user['ap_login_pers'];
+        $pwdA = $user['ap_pwd_pers'];
+
+        $urlSup = env('APP_URL_SAAS')."representant/$ID?login=$loginA&pwd=$pwdA";
+        $response = Http::get($urlSup);
+
+        $representant = $response->json();
+
+        return $representant;
+    }
+
     private function ListeRepresentant($ID, Request $request, $element){
             $data = $this->RechercherUtilisateur($ID,$request,$element);
 

@@ -65,6 +65,7 @@ Route::middleware(['verif'])->group(function () {
     Route::post('/utilisateurs-portefeuille-create/{ID}/{matricule}', 'UtilisateurController@portefeuilleCreate');
     Route::get('/utilisateurs-service/{ID}/{element}', 'UtilisateurController@service');
     Route::get('/utilisateurs-representant/{ID}/{element}', 'UtilisateurController@representant');
+    Route::get('/utilisateurs-representant-delete/{ID}', 'UtilisateurController@representantDelete');
     Route::post('/utilisateurs-marquer-interlocuteur-representant/{matricule}', 'UtilisateurController@marquerInterlocuteurRepresentant');
     Route::get('/utilisateurs-partenaire-portefeuille-retirer/{ID}', 'UtilisateurController@portefeuilleRetirer');
 
