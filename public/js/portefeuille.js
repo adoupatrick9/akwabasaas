@@ -34,6 +34,7 @@ $(document).ready(function() {
         var ap_adressegeo_pers = $('input[name="ap_adressegeo_pers"]').val();
         var matriculePartenaire = $('#matricule').val();
         var IDPartenaire = $('#IDPartenaire').val();
+        var urlEnr = $(this).attr('action');
         if (ap_type_pers == "" || ap_nom_pers == "" ||
             ap_mobile_pers == "" || ap_email_pers == "" ||
             ap_login_pers == "" || ap_ville_pers == "" ||
@@ -54,7 +55,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: "/utilisateurs-portefeuille-create/" + IDPartenaire + "/" + matriculePartenaire,
+            url: urlEnr,
             data: {
                 ap_nom_pers: ap_nom_pers,
                 ap_prenom_pers: ap_prenom_pers,
@@ -92,19 +93,20 @@ $(document).ready(function() {
     });
 
     // Supprimer
-    $('.supprimer').click(function() {
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
         var rep = confirm("Voulez-vous retirer ce client du portefeuille?");
         if (rep == false) {
             return false;
         }
-        var id = $(this).attr('id');
+        var urlSup = $(this).attr('id');
         $.ajax({
             type: "get",
-            url: "/utilisateurs-partenaire-portefeuille-retirer/" + id,
+            url: urlSup,
             dataType: "json",
             success: function(data) {
                 alert('Client retiré du portefeuille');
-                window.location.replace('/utilisateurs-portefeuille/' + id + '/partenaire');
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);

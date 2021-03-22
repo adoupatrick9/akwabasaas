@@ -23,6 +23,7 @@
                         <th>Nom complet</th>
                         <th>Mobile</th>
                         <th>Email</th>
+                        <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -31,6 +32,7 @@
                         <td class="text-uppercase">{{ $portefeuille['ap_nom_pers'] }} {{ $portefeuille['ap_prenom_pers'] }}</td>
                         <td>{{ $portefeuille['ap_mobile_pers'] }}</td>
                         <td>{{ $portefeuille['ap_email_pers'] }}</td>
+                        <td><a href="{{ url('/utilisateurs-partenaire-portefeuille-retirer/'.$portefeuille['idas_portefeuille']) }}" class="supprimer btn btn-danger">Supprimer</a></td>
                       </tr>
                     @endforeach
 
