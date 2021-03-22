@@ -38,7 +38,8 @@ $(document).ready(function() {
         var ap_email_pers = $('input[name="ap_email_pers"]').val();
         var ap_pays_pers = $('#ap_pays_pers option:selected').val();
         var ap_ville_pers = $('input[name="ap_ville_pers"]').val();
-        var ap_siteweb_pers = $('input[name="ap_siteweb_pers"]').val();
+        var ap_siteweb_pers = $('input[name="ap_siteweb_pers"]').val()
+        var urlEnr = $(this).attr('action');
 
         if (ap_type_pers == "" || ap_nom_pers == "" ||
             ap_mobile_pers == "" || ap_email_pers == "" ||
@@ -60,7 +61,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: "/utilisateurs-create/utilisateur",
+            url: urlEnr,
             data: {
                 ap_nom_pers: ap_nom_pers,
                 ap_login_pers: ap_login_pers,
@@ -84,7 +85,7 @@ $(document).ready(function() {
                     return false;
                 }
                 alert("L'utilisateur a bien été enregistré.");
-                window.location.replace("/utilisateurs/utilisateur");
+                window.location.reload();
             },
             error: function(response) {
                 console.log(response);
@@ -93,8 +94,10 @@ $(document).ready(function() {
     });
 
     //Modifier une service
-    $('.editer').click(function() {
+    $('.editer').click(function(e) {
+        e.preventDefault();
         var id = $(this).attr('id');
+        var urlEdit = $(this).attr('href');
         $.ajaxSetup({
             beforeSend: function() {
                 $('.chargeM').show();
@@ -105,7 +108,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "get",
-            url: "/utilisateurs-edit/" + id + "/utilisateur",
+            url: urlEdit,
             dataType: "json",
             success: function(data) {
                 $('#ap_nom_pers').val(data.ap_nom_pers);
@@ -127,7 +130,8 @@ $(document).ready(function() {
                 } else {
                     $('.genreE').show();
                 }
-                $('#editUtilisateur').attr('action', '/utilisateurs-update/' + id + '/utilisateur');
+                var urlUpdate = $('#editUtilisateur').attr('action') + '/' + id + '/utilisateur';
+                $('#editUtilisateur').attr('action', urlUpdate);
                 $('#idas_personne').val(id);
                 $('#myModalEditUtilisateur').modal('show');
             },
@@ -162,7 +166,7 @@ $(document).ready(function() {
             return false;
         }
         var idas_personne = $('#idas_personne').val();
-        var MonUrl = $(this).attr('action');
+        var urlUpdate = $(this).attr('action');
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': _token,
@@ -176,7 +180,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: MonUrl,
+            url: urlUpdate,
             data: {
                 idas_personne: idas_personne,
                 ap_nom_pers: ap_nom_pers,
@@ -197,7 +201,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 alert('Utilisateur mis à jour.');
-                window.location.replace("/utilisateurs/utilisateur");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
@@ -206,19 +210,20 @@ $(document).ready(function() {
     });
 
     // Supprimer
-    $('.supprimer').click(function() {
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
         var rep = confirm("Voulez-vous supprimer cet utilisateur ?");
         if (rep == false) {
             return false;
         }
-        var id = $(this).attr('id');
+        var urlSup = $(this).attr('href');
         $.ajax({
             type: "get",
-            url: "/utilisateurs-delete/" + id + "/utilisateur",
+            url: urlSup,
             dataType: "json",
             success: function(data) {
                 alert('Utilisateur supprimée');
-                window.location.replace("/utilisateurs/utilisateur");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);

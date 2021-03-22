@@ -46,9 +46,9 @@
                                         <span class="caret"></span>
                                         </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#" id="{{ $user['idas_personne'] }}" class="editer">Modifier</a></li>
-                                        <li><a href="{{ url('/utilisateurs-actif-inactif/'.$user['idas_personne'].'/utilisateur' ) }}">Activer/Désactiver</a></li>
-                                        <li><a href="#" id="{{ $user['idas_personne'] }}" class="supprimer">Supprimer</a></li>
+                                        <li><a href="{{ url('/utilisateurs-edit/'.$user['idas_personne'].'/utilisateur') }}" id="{{ $user['idas_personne'] }}" class="editer">Modifier</a></li>
+                                        <li><a href="{{ url('/utilisateurs-actif-inactif/'.$user['idas_personne'].'/utilisateur') }}">Activer/Désactiver</a></li>
+                                        <li><a href="{{ url('/utilisateurs-delete/'.$user['idas_personne'].'/utilisateur') }}" id="{{ $user['idas_personne'] }}" class="supprimer">Supprimer</a></li>
                                     </ul>
                                 </div>
                             </td>
