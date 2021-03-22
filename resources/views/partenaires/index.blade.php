@@ -49,9 +49,9 @@
                                     <li><a href="{{ url('/utilisateurs-portefeuille/'.$partenaire['idas_personne']).'/partenaire'  }}">Portefeuille</a></li>
                                     <li><a href="{{ url('/utilisateurs-representant/'.$partenaire['idas_personne']).'/partenaire'  }}">Représentants</a></li>
                                     <li><a href="{{ url('/solde-mvt-compte/'.$partenaire['idas_personne']).'/partenaire'  }}">Mouvements compte</a></li>
-                                    <li><a href="#" id="{{ $partenaire['idas_personne'] }}" class="editer">Modifier</a></li>
+                                    <li><a href="{{ url('/utilisateurs-edit/'.$partenaire['idas_personne'].'/partenaire') }}" id="{{ $partenaire['idas_personne'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/utilisateurs-actif-inactif/'.$partenaire['idas_personne']).'/partenaire'  }}">Activer/Désactiver</a></li>
-                                    <li><a href="#" id="{{ $partenaire['idas_personne'] }}" class="supprimer">Supprimer</a></li>
+                                    <li><a href="{{ url('/utilisateurs-delete/'.$partenaire['idas_personne'].'/partenaire') }}" id="{{ $partenaire['idas_personne'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                         </td>
