@@ -25,8 +25,7 @@ class AuthentificationController extends Controller
         $userHTTP = Http::get($url);
         //dd($userHTTP);
         $user = $userHTTP->json();
-
-        if ($user['ap_login_pers'] == "") {
+        if ($user['ap_matricule_pers'] == "") {
             return back()->with("message", "Les données ne correspondent pas !!!");
         } else {
             $request->session()->put('user', $user); // création de la session avec clé user

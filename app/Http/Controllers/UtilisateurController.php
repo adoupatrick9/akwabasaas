@@ -232,10 +232,9 @@ class UtilisateurController extends Controller
         $IDpartenaire = $ID;
         $partenaire = $this->RechercherUtilisateur($IDpartenaire,$request,'partenaire');
         $matriculePartenaire = $partenaire['ap_matricule_pers'];
-        $nomComplet = $partenaire['nomComplet'];
         $mesPays = new PaysController();
         $pays = $mesPays->ListePays($request);
-        return view('partenaires.portefeuille', compact('portefeuilles', 'nomComplet', 'pays', 'matriculePartenaire', 'IDpartenaire'));
+        return view('partenaires.portefeuille', compact('portefeuilles', 'partenaire', 'pays', 'matriculePartenaire', 'IDpartenaire'));
     }
 
     private function RecupererPortefeuillePartenaire(Request $request, $IDpartenaire){
@@ -308,8 +307,8 @@ class UtilisateurController extends Controller
         $element = "client";
         $this->Validation($request);
         $data = $this->Affectation(1, $request, $element, $matricule); // affectation enregistrement
-        return $data;
         $this->EnregistrementModificationOuSuppression(1,$data,$request,$element);
+        return $data;
     }
 
     public function portefeuilleRetirer($ID, Request $request){

@@ -3,7 +3,7 @@
 @section('content')
 <section class="wrapper mt">
     <h3>
-        <i class="fa fa-angle-right"></i> Portefeuille de <span class="text-uppercase">{{ $nomComplet }}</span>
+        <i class="fa fa-angle-right"></i> Portefeuille de <span class="text-uppercase">{{ $partenaire['nomComplet'] }}</span>
         <a href="{{ url('/utilisateurs/partenaire') }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>
@@ -28,7 +28,7 @@
                   <tbody>
                     @foreach($portefeuilles as $portefeuille)
                       <tr>
-                        <td class="text-uppercase">{{ $portefeuille['nomComplet'] }}</td>
+                        <td class="text-uppercase">{{ $portefeuille['ap_nom_pers'] }} {{ $portefeuille['ap_prenom_pers'] }}</td>
                         <td>{{ $portefeuille['ap_mobile_pers'] }}</td>
                         <td>{{ $portefeuille['ap_email_pers'] }}</td>
                       </tr>
