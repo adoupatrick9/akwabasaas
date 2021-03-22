@@ -47,9 +47,9 @@
                                     <li><a href="{{ url('/utilisateurs-service/'.$client['idas_personne']).'/client'  }}">Services souscrits</a></li>
                                     <li><a href="{{ url('/utilisateurs-representant/'.$client['idas_personne']).'/client'  }}">Représentants</a></li>
                                     <li><a href="{{ url('/solde-mvt-compte/'.$client['idas_personne']).'/client'  }}">Mouvements compte</a></li>
-                                    <li><a href="#" id="{{ $client['idas_personne'] }}" class="editer">Modifier</a></li>
+                                    <li><a href="{{ url('/utilisateurs-edit/'.$client['idas_personne'].'/client') }}" id="{{ $client['idas_personne'] }}" class="editer">Modifier</a></li>
                                     <li><a href="{{ url('/utilisateurs-actif-inactif/'.$client['idas_personne']).'/client'  }}">Activer/Désactiver</a></li>
-                                    <li><a href="#" id="{{ $client['idas_personne'] }}" class="supprimer">Supprimer</a></li>
+                                    <li><a href="{{ url('/utilisateurs-delete/'.$client['idas_personne'].'/client') }}" id="{{ $client['idas_personne'] }}" class="supprimer">Supprimer</a></li>
                                 </ul>
                             </div>
                     </td>

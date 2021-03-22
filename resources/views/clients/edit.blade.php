@@ -2,7 +2,7 @@
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalEditClient" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
-          <form id="editClient">
+          <form id="editClient" action="{{ url('/utilisateurs-update/') }}">
             @csrf
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

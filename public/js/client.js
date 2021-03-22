@@ -41,6 +41,7 @@ $(document).ready(function() {
         var ap_siteweb_pers = $('input[name="ap_siteweb_pers"]').val();
         var ap_adressepostale_pers = $('input[name="ap_adressepostale_pers"]').val();
         var ap_adressegeo_pers = $('input[name="ap_adressegeo_pers"]').val();
+        var urlEnr = $(this).attr('action');
 
         if (ap_type_pers == "" || ap_nom_pers == "" ||
             ap_mobile_pers == "" || ap_email_pers == "" ||
@@ -62,7 +63,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: "/utilisateurs-create/client",
+            url: urlEnr,
             data: {
                 ap_nom_pers: ap_nom_pers,
                 ap_prenom_pers: ap_prenom_pers,
@@ -98,8 +99,10 @@ $(document).ready(function() {
     });
 
     //Modifier un client
-    $('.editer').click(function() {
+    $('.editer').click(function(e) {
+        e.preventDefault();
         var id = $(this).attr('id');
+        var urlEdit = $(this).attr('href');
         $.ajaxSetup({
             beforeSend: function() {
                 $('.chargeM').show();
@@ -110,7 +113,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "get",
-            url: "/utilisateurs-edit/" + id + "/client",
+            url: urlEdit,
             dataType: "json",
             success: function(data) {
                 $('#ap_nom_pers').val(data.ap_nom_pers);
@@ -135,7 +138,8 @@ $(document).ready(function() {
                 } else {
                     $('.genreE').show(1000);
                 }
-                $('#editClient').attr('action', '/utilisateurs-update/' + id + '/client');
+                var urlUpdate = $('#editClient').attr('action') + '/' + id + '/client';
+                $('#editClient').attr('action', urlUpdate);
                 $('#idas_personne').val(id);
                 $('#myModalEditClient').modal('show');
             },
@@ -211,7 +215,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 alert('Client mis à jour.');
-                window.location.replace("/utilisateurs/client");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
@@ -220,19 +224,20 @@ $(document).ready(function() {
     });
 
     // Supprimer
-    $('.supprimer').click(function() {
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
         var rep = confirm("Voulez-vous supprimer ce client ?");
         if (rep == false) {
             return false;
         }
-        var id = $(this).attr('id');
+        var urlSup = $(this).attr('href');
         $.ajax({
             type: "get",
-            url: "/utilisateurs-delete/" + id + "/client",
+            url: urlSup,
             dataType: "json",
             success: function(data) {
                 alert('Client supprimée');
-                window.location.replace("/utilisateurs/client");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
