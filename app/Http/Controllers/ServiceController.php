@@ -74,18 +74,16 @@ class ServiceController extends Controller
         $ajoute_par = $data['ajoute_par'];
         $modifie_par = $data['modifie_par'];
         $date_heure_sys = $data['date_heure_sys'];
-        $Sce_modalitepaiement = $data['Sce_modalitepaiement'];
         $data = [
             "idas_service" => $idas_service,
             "sce_code_service" => $Sce_code,
-            "sce_nom_service" => $sce_nom,
-            "sce_type_service" => $sce_type,
+            "Sce_nom_service" => $sce_nom,
+            "Sce_type_service" => $sce_type,
             "ajoute_le" => $ajoute_le,
             "modifie_le" => $modifie_le,
             "ajoute_par" => $ajoute_par,
             "modifie_par" => $modifie_par,
-            "date_heure_sys" => $date_heure_sys,
-            "Sce_modalitepaiement" => $Sce_modalitepaiement,
+            "date_heure_sys" => $date_heure_sys
         ];
         return $data;
     }

@@ -3,7 +3,7 @@
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalStoreService" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
-          <form id="addService">
+          <form id="addService" action="{{ url("/services-create") }}"
           @csrf
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

@@ -9,6 +9,7 @@ $(document).ready(function() {
         var _token = $('meta[name="csrf-token"]').attr('content');
         var sce_nom_service = $('input[name="sce_nom_service"]').val();
         var sce_type = $('#sce_type_service option:selected').val();
+        var urlEnr = $(this).attr('action');
 
         if (sce_nom_service == "" || sce_type == "") {
             alert('Aucun champ ne doit être vide.');
@@ -28,7 +29,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "post",
-            url: "/services-create",
+            url: urlEnr,
             data: {
                 sce_nom_service: sce_nom_service,
                 sce_type: sce_type
@@ -40,7 +41,7 @@ $(document).ready(function() {
                     return false;
                 }
                 alert('Le service a bien été enregistré.');
-                window.location.replace("/services");
+                window.location.reload();
             },
             error: function(response) {
                 console.log(response);
@@ -49,8 +50,10 @@ $(document).ready(function() {
     });
 
     //Modifier une service
-    $('.editer').click(function() {
+    $('.editer').click(function(e) {
+        e.preventDefault();
         var id = $(this).attr('id');
+        var urlEdit = $(this).attr('href');
         $.ajaxSetup({
             beforeSend: function() {
                 $('.chargeM').show();
@@ -61,12 +64,13 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "get",
-            url: "/services-edit/" + id + "/services",
+            url: urlEdit,
             dataType: "json",
             success: function(data) {
-                $('#sce_nom_service').val(data.sce_nom_service);
-                $('#sce_type option[value=' + data.sce_type_service + ']').prop('selected', true);
-                $('#editService').attr('action', '/services-update/' + id);
+                $('#sce_nom_service').val(data.Sce_nom_service);
+                $('#sce_type option[value=' + data.Sce_type_service + ']').prop('selected', true);
+                var urlUpdate = $('#editService').attr('action') + '/' + id;
+                $('#editService').attr('action', urlUpdate);
                 $('#idas_service').val(id);
                 $('#myModalEditService').modal('show');
             },
@@ -109,7 +113,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 alert('service mis à jour.');
-                window.location.replace("/services");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
@@ -131,7 +135,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 alert('Service supprimée');
-                window.location.replace("/services");
+                window.location.reload();
             },
             error: function(data) {
                 console.log(data);
