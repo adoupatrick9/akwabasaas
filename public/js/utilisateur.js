@@ -84,7 +84,6 @@ $(document).ready(function() {
                     alert('Utilisateur non enregistré');
                     return false;
                 }
-                alert("L'utilisateur a bien été enregistré.");
                 window.location.reload();
             },
             error: function(response) {
@@ -200,7 +199,6 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                alert('Utilisateur mis à jour.');
                 window.location.reload();
             },
             error: function(data) {
@@ -222,7 +220,6 @@ $(document).ready(function() {
             url: urlSup,
             dataType: "json",
             success: function(data) {
-                alert('Utilisateur supprimée');
                 window.location.reload();
             },
             error: function(data) {

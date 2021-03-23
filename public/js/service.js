@@ -10,7 +10,6 @@ $(document).ready(function() {
         var sce_nom_service = $('input[name="sce_nom_service"]').val();
         var sce_type = $('#sce_type_service option:selected').val();
         var urlEnr = $(this).attr('action');
-
         if (sce_nom_service == "" || sce_type == "") {
             alert('Aucun champ ne doit être vide.');
             $('input[name="sce_nom_service"]').focus();
@@ -40,7 +39,6 @@ $(document).ready(function() {
                     alert('service non enregistrée');
                     return false;
                 }
-                alert('Le service a bien été enregistré.');
                 window.location.reload();
             },
             error: function(response) {
@@ -112,7 +110,6 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                alert('service mis à jour.');
                 window.location.reload();
             },
             error: function(data) {
@@ -134,7 +131,6 @@ $(document).ready(function() {
             url: urlSup,
             dataType: "json",
             success: function(data) {
-                alert('Service supprimée');
                 window.location.reload();
             },
             error: function(data) {

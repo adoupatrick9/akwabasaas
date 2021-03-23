@@ -59,7 +59,6 @@ $(document).ready(function() {
                     alert("Le coût service n'a pas pu être ajouté.");
                     return false;
                 }
-                alert("Le coût service a bien été ajouté.");
                 window.location.reload();
             },
             error: function(response) {
@@ -170,7 +169,6 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                alert('Coût service mis à jour.');
                 window.location.reload();
             },
             error: function(data) {
@@ -192,7 +190,6 @@ $(document).ready(function() {
             url: urlSup,
             dataType: "json",
             success: function(data) {
-                alert('Coût service retiré');
                 window.location.reload();
             },
             error: function(data) {

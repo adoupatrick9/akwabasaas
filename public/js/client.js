@@ -89,7 +89,6 @@ $(document).ready(function() {
                     alert('Client non enregistré');
                     return false;
                 }
-                alert("Le client a bien été enregistré.");
                 window.location.reload();
             },
             error: function(response) {
@@ -214,7 +213,6 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                alert('Client mis à jour.');
                 window.location.reload();
             },
             error: function(data) {
@@ -236,7 +234,6 @@ $(document).ready(function() {
             url: urlSup,
             dataType: "json",
             success: function(data) {
-                alert('Client supprimée');
                 window.location.reload();
             },
             error: function(data) {

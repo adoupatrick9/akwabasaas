@@ -73,7 +73,6 @@ $(document).ready(function() {
                     alert('Représentant non enregistré');
                     return false;
                 }
-                alert("Le représentant a bien été enregistré.");
                 window.location.reload();
             },
             error: function(response) {
@@ -95,7 +94,6 @@ $(document).ready(function() {
             url: urlSup,
             dataType: "json",
             success: function(data) {
-                alert('Représentant supprimée');
                 window.location.reload();
             },
             error: function(data) {

@@ -83,8 +83,7 @@ $(document).ready(function() {
                     alert("Le client n'a pas pu être ajouté au portefeuille");
                     return false;
                 }
-                alert("Le client a bien été ajouté au portefeuille.");
-                window.location.replace("/utilisateurs-portefeuille/" + IDPartenaire + "/partenaire");
+                window.location.reload();
             },
             error: function(response) {
                 console.log(response);
@@ -105,7 +104,6 @@ $(document).ready(function() {
             url: urlSup,
             dataType: "json",
             success: function(data) {
-                alert('Client retiré du portefeuille');
                 window.location.reload();
             },
             error: function(data) {
