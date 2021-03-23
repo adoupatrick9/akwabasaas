@@ -103,4 +103,26 @@ $(document).ready(function() {
 
     });
 
+    // Dissocier
+    $('.dissocier').click(function(e) {
+        e.preventDefault();
+        var rep = confirm("Voulez-vous dissocier ce représentant ?");
+        var urlDis = $(this).attr('href');
+        if (rep == false) {
+            return false;
+        }
+        $.ajax({
+            type: "get",
+            url: urlDis,
+            dataType: "json",
+            success: function(data) {
+                window.location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
+    });
+
 });

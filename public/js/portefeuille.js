@@ -91,14 +91,36 @@ $(document).ready(function() {
         });
     });
 
-    // Supprimer
-    $('.supprimer').click(function(e) {
+    // Dissocier
+    $('.dissocier').click(function(e) {
         e.preventDefault();
-        var rep = confirm("Voulez-vous retirer ce client du portefeuille?");
+        var rep = confirm("Voulez-vous dissocier ce client du portefeuille?");
         if (rep == false) {
             return false;
         }
-        var urlSup = $(this).attr('id');
+        var urlDis = $(this).attr('href');
+        $.ajax({
+            type: "get",
+            url: urlDis,
+            dataType: "json",
+            success: function(data) {
+                window.location.reload();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
+    });
+
+    // Supprimer
+    $('.supprimer').click(function(e) {
+        e.preventDefault();
+        var rep = confirm("Voulez-vous supprimer ce client du portefeuille?");
+        if (rep == false) {
+            return false;
+        }
+        var urlSup = $(this).attr('href');
         $.ajax({
             type: "get",
             url: urlSup,

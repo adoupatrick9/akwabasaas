@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AuthentificationController;
+use PhpParser\Node\Stmt\Return_;
 
 class UtilisateurController extends Controller
 {
@@ -31,7 +32,7 @@ class UtilisateurController extends Controller
 
     public function edit($ID, Request $request, $element){
         $data = $this->RechercherUtilisateur($ID,$request, $element);
-        return$data;
+        return $data;
     }
 
     public function update(Request $request, $ID, $element){
@@ -48,7 +49,7 @@ class UtilisateurController extends Controller
     public function delete(Request $request, $ID,$element){
         $data = $this->RechercherUtilisateur($ID,$request, $element);
         $this->EnregistrementModificationOuSuppression(3,$data,$request, $element);
-        return$data;
+        return $data;
     }
 
     private function Validation(Request $request, $avec_login = false){
@@ -311,20 +312,28 @@ class UtilisateurController extends Controller
         return $data;
     }
 
-    public function portefeuilleRetirer($ID, Request $request){
+    public function portefeuilleDelete($IDpartenaire, $code_rolepersonne, Request $request){
         $userAuth = new AuthentificationController();
-        //akwabasaas/utilisateur
         $user = $userAuth->RecuperationInfosUserConnecte($request);
-        $login = $user['ap_login_pers'];
-        $pwd = $user['ap_pwd_pers'];
+        $loginA = $user['ap_login_pers'];
+        $pwdA = $user['ap_pwd_pers'];
+        $partenaire = $this->RechercherUtilisateur($IDpartenaire, $request, 'partenaire');
+        $matriculePartenaire = $partenaire['ap_matricule_pers'];
+        $urlSup = env('APP_URL_SAAS')."portefeuillesupprimer/$matriculePartenaire/$code_rolepersonne?login=$loginA&pwd=$pwdA";
+        $response = Http::get($urlSup);
+        return $response->json();
+    }
 
-        $Portefeuille = $this->RechercherPortefeuilleSelonID($ID, $request);
-
-        // Indiquer url pour retirer un client du portefeuille
-        $urlSup = env('APP_URL_SAAS')."?login=$login&pwd=$pwd";
-
-        Http::delete($urlSup, $Portefeuille);
-
+    public function portefeuilleDissocier($IDpartenaire, $code_rolepersonne, Request $request){
+        $userAuth = new AuthentificationController();
+        $user = $userAuth->RecuperationInfosUserConnecte($request);
+        $loginA = $user['ap_login_pers'];
+        $pwdA = $user['ap_pwd_pers'];
+        $partenaire = $this->RechercherUtilisateur($IDpartenaire, $request, 'partenaire');
+        $matriculePartenaire = $partenaire['ap_matricule_pers'];
+        $urlSup = env('APP_URL_SAAS')."portefeuilledissocier/$matriculePartenaire/$code_rolepersonne?login=$loginA&pwd=$pwdA";
+        $response = Http::get($urlSup);
+        return $response->json();
     }
 
     public function representant($ID, Request $request, $element){
@@ -336,29 +345,24 @@ class UtilisateurController extends Controller
         return view('utilisateurs.representant', compact('representants', 'user', 'pays'));
     }
 
-    public function representantDelete($ID, Request $request){
-        $representant = $this->RepresentantSelonID($ID, $request);
+    public function representantDissocier($code, Request $request){
         $userAuth = new AuthentificationController();
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $loginA = $user['ap_login_pers'];
         $pwdA = $user['ap_pwd_pers'];
-        $urlSup = env('APP_URL_SAAS')."$?login=$loginA&pwd=$pwdA";
-        $response = Http::delete($urlSup, $representant);
+        $urlSup = env('APP_URL_SAAS')."representantdissocier/$code?login=$loginA&pwd=$pwdA";
+        $response = Http::get($urlSup);
         return $response->json();
     }
 
-    private function RepresentantSelonID($ID, Request $request){
+    public function representantDelete($code, Request $request){
         $userAuth = new AuthentificationController();
         $user = $userAuth->RecuperationInfosUserConnecte($request);
         $loginA = $user['ap_login_pers'];
         $pwdA = $user['ap_pwd_pers'];
-
-        $urlSup = env('APP_URL_SAAS')."representant/$ID?login=$loginA&pwd=$pwdA";
+        $urlSup = env('APP_URL_SAAS')."representantsupprimer/$code?login=$loginA&pwd=$pwdA";
         $response = Http::get($urlSup);
-
-        $representant = $response->json();
-
-        return $representant;
+        return $response->json();
     }
 
     private function ListeRepresentant($ID, Request $request, $element){

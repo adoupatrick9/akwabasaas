@@ -39,6 +39,7 @@ $(document).ready(function() {
                     alert('service non enregistrée');
                     return false;
                 }
+                alert('Le service a bien été enregistré.');
                 window.location.reload();
             },
             error: function(response) {
@@ -110,6 +111,7 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
+                alert('service mis à jour.');
                 window.location.reload();
             },
             error: function(data) {
@@ -131,6 +133,7 @@ $(document).ready(function() {
             url: urlSup,
             dataType: "json",
             success: function(data) {
+                alert('Service supprimée');
                 window.location.reload();
             },
             error: function(data) {

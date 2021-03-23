@@ -25,7 +25,7 @@
                         <th>Nom complet</th>
                         <th>Mobile</th>
                         <th>Email</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -34,7 +34,19 @@
                         <td class="text-uppercase">{{ $representant['ap_nom_pers'] }}</td>
                         <td>{{ $representant['ap_mobile_pers'] }}</td>
                         <td>{{ $representant['ap_email_pers'] }}</td>
-                        <td><a href="" class="supprimer btn btn-danger">Supprimer</a></td>
+                        <td class="center hidden-phone">
+                                <!-- Split button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-theme03">Actions</button>
+                                <button type="button" class="btn btn-theme03 dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/utilisateurs-representant-dissocier/'.$representant['code_representant']) }}" class="dissocier">Dissocier</a></li>
+                                    <li><a href="{{ url('/utilisateurs-representant-delete/'.$representant['code_representant']) }}" id="{{ $representant['idas_representant'] }}" class="supprimer">Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </td>
                       </tr>
                     @endforeach
 

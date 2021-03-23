@@ -63,9 +63,12 @@ Route::middleware(['verif'])->group(function () {
     Route::get('/utilisateurs-base-de-donnee/{ID}/{element}', 'UtilisateurController@ajouterInfoBaseDeDonnee');
     Route::get('/utilisateurs-portefeuille/{ID}/{element}', 'UtilisateurController@portefeuille');
     Route::post('/utilisateurs-portefeuille-create/{ID}/{matricule}', 'UtilisateurController@portefeuilleCreate');
+    Route::get('/utilisateurs-portefeuille-delete/{IDpartenaire}/{code_rolepersonne}', 'UtilisateurController@portefeuilleDelete');
+    Route::get('/utilisateurs-portefeuille-dissocier/{IDpartenaire}/{code_rolepersonne}', 'UtilisateurController@portefeuilleDissocier');
     Route::get('/utilisateurs-service/{ID}/{element}', 'UtilisateurController@service');
     Route::get('/utilisateurs-representant/{ID}/{element}', 'UtilisateurController@representant');
-    Route::get('/utilisateurs-representant-delete/{ID}', 'UtilisateurController@representantDelete');
+    Route::get('/utilisateurs-representant-delete/{code}', 'UtilisateurController@representantDelete');
+    Route::get('/utilisateurs-representant-dissocier/{code}', 'UtilisateurController@representantDissocier');
     Route::post('/utilisateurs-marquer-interlocuteur-representant/{matricule}', 'UtilisateurController@marquerInterlocuteurRepresentant');
     Route::get('/utilisateurs-partenaire-portefeuille-retirer/{ID}', 'UtilisateurController@portefeuilleRetirer');
 

@@ -23,7 +23,7 @@
                         <th>Nom complet</th>
                         <th>Mobile</th>
                         <th>Email</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -32,7 +32,19 @@
                         <td class="text-uppercase">{{ $portefeuille['ap_nom_pers'] }} {{ $portefeuille['ap_prenom_pers'] }}</td>
                         <td>{{ $portefeuille['ap_mobile_pers'] }}</td>
                         <td>{{ $portefeuille['ap_email_pers'] }}</td>
-                        <td><a href="{{ url('/utilisateurs-partenaire-portefeuille-retirer/'.$portefeuille['idas_portefeuille']) }}" class="supprimer btn btn-danger">Supprimer</a></td>
+                        <td class="center hidden-phone">
+                            <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-theme03">Actions</button>
+                            <button type="button" class="btn btn-theme03 dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/utilisateurs-portefeuille-dissocier/'.$IDpartenaire.'/'.$portefeuille['code_rolepersonne']) }}" class="dissocier">Dissocier</a></li>
+                                <li><a href="{{ url('/utilisateurs-portefeuille-delete/'.$IDpartenaire.'/'.$portefeuille['code_rolepersonne']) }}"  class="supprimer">Supprimer</a></li>
+                            </ul>
+                        </div>
+                    </td>
                       </tr>
                     @endforeach
 
