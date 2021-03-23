@@ -2,9 +2,27 @@
 
 @section('content')
 <section class="wrapper mt">
+    <?php
+    $urlCourant = URL::Current();
+    $urlRelatif = parse_url($urlCourant);
+    $url = $urlRelatif['path'];
+    $urlDecoupe = explode("/", $url);
+    $nbreElementUrlDecoupe = count($urlDecoupe);
+    $autreUrl = $urlDecoupe[$nbreElementUrlDecoupe-1];
+
+    switch ($autreUrl) {
+        case 'client':
+            $url = '/utilisateurs/client';
+            break;
+
+        case 'partenaire':
+            $url = '/utilisateurs/partenaire';
+            break;
+    }
+?>
     <h3>
         <i class="fa fa-angle-right"></i> Les répresentants de <span class="text-uppercase">{{ $user['nomComplet'] }}</span>
-        <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
+        <a href="{{ url($url) }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>
     <div class="container">

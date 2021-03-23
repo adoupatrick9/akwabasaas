@@ -4,7 +4,7 @@
 <section class="wrapper mt">
     <h3>
         <i class="fa fa-angle-right"></i> Service(s) souscrit(s) par <span class="text-uppercase">{{ $NomClient }}</span>
-        <a href="{{ url()->previous() }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
+        <a href="{{ url('utilisateurs/client') }}" class="btn btn-danger" style="float: right">Retour <i class="fa fa-arrow-left"></i></a>
     </h3>
     <hr>
     <div class="container">
@@ -13,7 +13,7 @@
       @endif
     </div>
 
-    <a data-toggle="modal" href="{{ URL::current().'#myModalStore' }}">
+    <a data-toggle="modal" href="'#myModalStore">
         <div class="btn btn-primary" style="margin: 10px 0px;">Ajouter un service au client  <i class="fa fa-plus"></i></div>
     </a>
     <div class="row mb" style="margin: 0px 1px;">

@@ -207,6 +207,7 @@
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
+    {{-- script php des urls --}}
     <?php
         $urlCourant = URL::Current();
         $urlRelatif = parse_url($urlCourant);
